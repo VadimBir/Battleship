@@ -1,12 +1,18 @@
 public class CarrierHorizontal implements Command{
     private Carrier carrier;
-
-    public CarrierHorizontal(Carrier carrier) 
+    private Board board;
+    private int inputX;
+    private int inputY;
+    public CarrierHorizontal(Carrier carrier, Board board, int inputX, int inputY) 
     {
         this.carrier = carrier;
-    }
-    public void execute() {
-        carrier.Horizontal();
+        this.board = board;
+        this.inputX=inputX;
+        this.inputY=inputY;
+    } 
+    public Board execute() {
+        carrier.Horizontal(board, inputX, inputY);
+        return board;
     }
 
 }
