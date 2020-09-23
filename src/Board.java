@@ -6,7 +6,7 @@ abstract public class Board {
 	String[][] boardArrEnemy;
 	String[] boardRow;
 	String[] boardCol;
-	
+	 
 	public void setBoard() 
 	{
 		boardClear();

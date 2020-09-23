@@ -8,7 +8,7 @@ public class BoardFactory {
 			board = new Board_10x10();
 		}
 		
-		
+		 
 		return board;
 		
 	}

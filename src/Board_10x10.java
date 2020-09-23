@@ -1,7 +1,7 @@
 
 public class Board_10x10 extends Board{
 	public Board_10x10()
-	{
+	{ 
 		initialised = false;
 		boardArrPlayer = new String[10][10];
 		boardArrEnemy= new String [10][10];

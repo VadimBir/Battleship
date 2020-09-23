@@ -1,7 +1,7 @@
 
 public class Board_8x8 extends Board{
 	public Board_8x8()
-	{
+	{ 
 		initialised = false;
 		//boardArr = new String[8][8];
 		boardArrPlayer = new String[8][8];
