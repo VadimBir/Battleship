@@ -7,10 +7,10 @@ public class Carrier extends Board{
     public boolean carrierError= false;
     Board board;
 
-    public Board Horizontal(Board board, int inputX2, int inputY2)
+    public Board Horizontal(Board board/*, int inputX2, int inputY2*/)
     {
-        this.inputX= inputX2;
-        this.inputY= inputY2;
+        //this.inputX= inputX2;
+        //this.inputY= inputY2;
 
         do{
             getCoordinates();
@@ -25,10 +25,10 @@ public class Carrier extends Board{
         return board;
 
     }
-    public Board Vertical(Board board, int inputX2, int inputY2) 
+    public Board Vertical(Board board/*, int inputX2, int inputY2*/) 
     {
-        this.inputX= inputX2;
-        this.inputY= inputY2;
+        //this.inputX= inputX2;
+        //this.inputY= inputY2;
         do{
             getCoordinates();
         }while(board.boardCol.length<(inputX-1)+SHIP_LEN);
@@ -52,7 +52,7 @@ public class Carrier extends Board{
         System.out.println("Enter Y coordinate: ");
         int newY = myObj.nextInt();
         inputY = newY;
-        myObj.close();
+        //myObj.close();
     }
 
 

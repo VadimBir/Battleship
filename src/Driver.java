@@ -21,29 +21,25 @@ public class Driver {
 //---------------------------
 		
 		//user input
-		//... here inputs: 
-		int inputX =2;
-		int inputY =2;
+		//... here inputs: // no input here because to check errors it would be easier to do it during ship placement
+		//int inputX =2;
+		//int inputY =2;
+
+
 		//(C-Carries B-Battleship D-Destroyer S-Submarine P-Patrol_Boat)(H-hori V-vert)(A-..)(1-..)
 
+
+
+		//carrier placement
 		Carrier playerCarrier = new Carrier();
 
 		Command[] CmdArrCarrier;
 		CmdArrCarrier = new Command[2];
-		CmdArrCarrier[0]= new CarrierHorizontal(playerCarrier, boardTmp, inputX, inputY);
-		CmdArrCarrier[1]= new CarrierVertical(playerCarrier, boardTmp, inputX, inputY);
+		CmdArrCarrier[0]= new CarrierHorizontal(playerCarrier, boardTmp/*, inputX, inputY*/);
+		CmdArrCarrier[1]= new CarrierVertical(playerCarrier, boardTmp/*, inputX, inputY*/);
 		ControlShipPlacement CarrierCtrlArr= new ControlShipPlacement(CmdArrCarrier);
-		boolean carrierError = true;
 		CarrierCtrlArr.CmdArr(1);
-		while (carrierError == false){
-			
-			if(boardTmp==null){
-				boardTmp=board;
-			}else{
-				carrierError = false;
-				board=boardTmp;
-			}
-		}
+		board=boardTmp;
 		//CarrierCtrlArr.CmdArr(1); // this places a ship on coordinates, for now its fixed 
 		board.setBoard();
 
