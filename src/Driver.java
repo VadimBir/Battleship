@@ -41,6 +41,7 @@ public class Driver {
 		
 		//  make a user input for either horizontal or vertical
 		CarrierCtrlArr.CmdArr(1);
+		board=boardTmp;
 		CarrierCtrlArr.CmdArr(0); // running the command the second time would allow to do a random ship placement for an AI. 
 		board=boardTmp;
 		//CarrierCtrlArr.CmdArr(1); // this places a ship on coordinates, for now its fixed 

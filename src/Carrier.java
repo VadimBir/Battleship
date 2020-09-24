@@ -1,3 +1,4 @@
+import java.awt.print.Printable;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,6 +6,7 @@ public class Carrier extends Board{
     private int inputY;
     private int inputX;
     final int SHIP_LEN= 5;
+    final String SHIP_CHAR = "C";
     public boolean carrierError= true;
     Board board;
     private int PlayerPlacement=1;
@@ -24,17 +26,19 @@ public class Carrier extends Board{
         while(carrierError==true){
             do{
                 getCoordinates();
+                System.out.println("Coord: " + inputX + " " + inputY);
             }while(board.boardCol.length<(inputY-1)+SHIP_LEN || inputX>board.boardCol.length);
             checkHorizontalCollision(someBoardArr[PlayerPlacement], inputX, inputY);
         }
         System.out.println("Place Horizontally ... 5 ");
         this.board = board;
         for(int i=0; i<SHIP_LEN; i++){
-            someBoardArr[PlayerPlacement][inputY-1][inputX-1]="C";
+            someBoardArr[PlayerPlacement][inputY-1][inputX-1]=SHIP_CHAR;
             inputY++;
             //board.setBoard();
         }
         PlayerPlacement = 0;
+        carrierError = true;
         return board;
 
     }
@@ -46,6 +50,7 @@ public class Carrier extends Board{
         while(carrierError==true){
             do{
                 getCoordinates();
+                System.out.println("Coord: " + inputX + " " + inputY);
             }while(board.boardCol.length<(inputX-1+SHIP_LEN) || inputY>board.boardCol.length);
             System.out.println("Check: " + (inputX-1+SHIP_LEN) + "Boardlen" + board.boardCol.length + " " + board.boardRow.length);
             checkVerticalCollision(someBoardArr[PlayerPlacement], inputX, inputY);
@@ -53,11 +58,12 @@ public class Carrier extends Board{
         System.out.println("Place Vertically ... 5 ");    
         this.board = board;
         for(int i=0; i<SHIP_LEN; i++){
-            someBoardArr[PlayerPlacement][inputY-1][inputX-1]="C";
+            someBoardArr[PlayerPlacement][inputY-1][inputX-1]=SHIP_CHAR;
             inputX++;
             //board.setBoard();
         }
         PlayerPlacement = 0;
+        carrierError = true;
         return board;
 
     }
@@ -73,8 +79,8 @@ public class Carrier extends Board{
             inputY = newY;
         } else {
             Random rand = new Random();
-            inputX=rand.nextInt(boardCol.length);
-            inputY=rand.nextInt(boardRow.length);
+            inputX=rand.nextInt(board.boardCol.length);
+            inputY=rand.nextInt(board.boardRow.length);
         }
         //myObj.close();
     }
@@ -117,5 +123,5 @@ public class Carrier extends Board{
 
 // possible bug:
 // ships intersecting, --
-// ships being put outside of map --
+// ships being put outside of map -- New issue 
 // fix input var in vert and horiz 
