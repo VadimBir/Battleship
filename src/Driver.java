@@ -14,7 +14,7 @@ public class Driver {
 		System.out.println(" ");
 		//Board board2 = boardFactory.createBoard("10x10");
 		//board2.setBoard();
-		
+		board.boardArrPlayer[4][4]="D";
 		board.boardArrEnemy[4][5]="@";
 		//board.boardArr[4][5]="@";
 		board.setBoard();
@@ -31,14 +31,17 @@ public class Driver {
 
 
 		//carrier placement
-		Carrier playerCarrier = new Carrier();
+		Carrier carrier = new Carrier(board);
 
 		Command[] CmdArrCarrier;
 		CmdArrCarrier = new Command[2];
-		CmdArrCarrier[0]= new CarrierHorizontal(playerCarrier, boardTmp/*, inputX, inputY*/);
-		CmdArrCarrier[1]= new CarrierVertical(playerCarrier, boardTmp/*, inputX, inputY*/);
+		CmdArrCarrier[0]= new CarrierHorizontal(carrier, boardTmp/*, inputX, inputY*/);
+		CmdArrCarrier[1]= new CarrierVertical(carrier, boardTmp/*, inputX, inputY*/);
 		ControlShipPlacement CarrierCtrlArr= new ControlShipPlacement(CmdArrCarrier);
+		
+		//  make a user input for either horizontal or vertical
 		CarrierCtrlArr.CmdArr(1);
+		CarrierCtrlArr.CmdArr(0); // running the command the second time would allow to do a random ship placement for an AI. 
 		board=boardTmp;
 		//CarrierCtrlArr.CmdArr(1); // this places a ship on coordinates, for now its fixed 
 		board.setBoard();

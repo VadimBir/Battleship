@@ -8,7 +8,7 @@ public class CarrierVertical implements Command {
         this.carrier = carrier;
         this.board = board;
         //this.inputX=inputX;
-        //this.inputY=inputY;
+        //1this.inputY=inputY;
     } 
     public Board execute() {
         carrier.Vertical(board/*, inputX, inputY*/);
