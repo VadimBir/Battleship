@@ -6,6 +6,7 @@ public class CarrierHorizontal implements Command{
     public CarrierHorizontal(Carrier carrier, Board board/*, inputX, inputY*/) 
     {
         this.carrier = carrier;
+        //this.carrier.board=board;
         this.board = board;
         //this.inputX=inputX;
         //this.inputY=inputY;

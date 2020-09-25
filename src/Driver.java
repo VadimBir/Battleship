@@ -5,7 +5,7 @@ public class Driver {
 //working building board and drawing it using factory mode 
 //two boards available 8x8 and 10x10
 		BoardFactory boardFactory = new BoardFactory();
-		Board board = boardFactory.createBoard("8x8");
+		Board board = boardFactory.createBoard("10x10");
 		Board boardTmp = board;
 		//Board boardEnemy = boardFactory.createBoard("8x8");
 		board.setBoard();
@@ -44,7 +44,7 @@ public class Driver {
 		board=boardTmp;
 		CarrierCtrlArr.CmdArr(0); // running the command the second time would allow to do a random ship placement for an AI. 
 		board=boardTmp;
-		//CarrierCtrlArr.CmdArr(1); // this places a ship on coordinates, for now its fixed 
+
 		board.setBoard();
 
 
