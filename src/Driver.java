@@ -30,7 +30,7 @@ public class Driver {
 
 
 
-		//carrier placement
+//carrier placement ----------------------------------------------------------------
 		Carrier carrier = new Carrier(board);
 
 		Command[] CmdArrCarrier;
@@ -46,6 +46,7 @@ public class Driver {
 		board=boardTmp;
 
 		board.setBoard();
+//-----------------------------------------------------------------
 
 
 

@@ -72,10 +72,10 @@ public class Carrier extends Board{
         if(PlayerPlacement == 1){
             Scanner myObj = new Scanner(System.in);
             System.out.println("Enter X coordinate: ");
-            int newX = myObj.nextInt();
+            int newX = myObj.nextInt();                 
             inputX = newX;
             System.out.println("Enter Y coordinate: ");
-            int newY = myObj.nextInt();
+            int newY = myObj.nextInt();                 // make a hash map for [A-n]=[1-n] this would allow user to choose coodrinate via letter input for Y coordinate. 
             inputY = newY;
         } else {
             Random rand = new Random();
