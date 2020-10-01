@@ -1,25 +1,8 @@
-import java.util.Random;
-import java.util.Scanner;
-
-public class Carrier extends Ships{
-    static int carrierLen= 5;
-    static String carrierChar = "C";
-    
-    Carrier(Board board) {
-
-		super(board, carrierLen, carrierChar);
-		// TODO Auto-generated constructor stub
-	} 
-	
-
-	/*
-    Carrier(Board board)
+Carrier(Board board)
     {
-
         this.board = board;
         someBoardArr = new String[2][board.boardCol.length][board.boardRow.length];
     }
-    
 
     public Board Horizontal(Board board)
     {
@@ -114,11 +97,3 @@ public class Carrier extends Ships{
     {
         return carrierError;
     }
-    */
-}
-
-
-// possible bug:
-// ships intersecting, --
-// ships being put outside of map -- New issue 
-// fix input var in vert and horiz 

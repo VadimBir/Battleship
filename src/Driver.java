@@ -29,10 +29,14 @@ public class Driver {
 		//(C-Carries B-Battleship D-Destroyer S-Submarine P-Patrol_Boat)(H-hori V-vert)(A-..)(1-..)
 
 
+//testing zone so OOP 
+
+		
+
+
 
 //carrier placement ----------------------------------------------------------------
 		Carrier carrier = new Carrier(board);
-
 		Command[] CmdArrCarrier;
 		CmdArrCarrier = new Command[2];
 		CmdArrCarrier[0]= new CarrierHorizontal(carrier, boardTmp/*, inputX, inputY*/);
@@ -42,12 +46,31 @@ public class Driver {
 		//  make a user input for either horizontal or vertical
 		CarrierCtrlArr.CmdArr(1);
 		board=boardTmp;
+		//make below to be rand, either 1 or 0 
 		CarrierCtrlArr.CmdArr(0); // running the command the second time would allow to do a random ship placement for an AI. 
 		board=boardTmp;
 
 		board.setBoard();
 //-----------------------------------------------------------------
+//battleship placement ----------------------------------------------------------------
+	/*
+	Battleship battleship = new Battleship(board);
 
+	Command[] CmdArrBattleship;
+	CmdArrBattleship = new Command[2];
+	CmdArrBattleship[0]= new BattleshipHorizontal(battleship, boardTmp);
+	CmdArrBattleship[1]= new BattleshipVertical(battleship, boardTmp);
+	ControlShipPlacement BattleshipCtrlArr= new ControlShipPlacement(CmdArrBattleship);
+
+	//  make a user input for either horizontal or vertical
+	BattleshipCtrlArr.CmdArr(1);
+	board=boardTmp;
+	//make below to be rand, either 1 or 0 
+	BattleshipCtrlArr.CmdArr(0); // running the command the second time would allow to do a random ship placement for an AI. 
+	board=boardTmp;
+
+	board.setBoard();
+	*/
 
 
 

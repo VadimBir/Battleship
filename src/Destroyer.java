@@ -1,30 +1,35 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Carrier extends Ships{
-    static int carrierLen= 5;
-    static String carrierChar = "C";
-    
-    Carrier(Board board) {
+public class Destroyer extends Board{ 
+    final int destroyerLen= 3;
+    final String destroyerChar = "D";
 
-		super(board, carrierLen, carrierChar);
+    Battleship(Board board) {
+		super(board, destroyerLen, destroyerChar);
 		// TODO Auto-generated constructor stub
 	} 
-	
 
-	/*
-    Carrier(Board board)
+
+
+    /*
+    private int inputY; 
+    private int inputX;
+    public boolean battleshipError= true;
+    Board board;
+    private int PlayerPlacement=1;
+    String[][][] someBoardArr;
+    
+    Battleship(Board board)
     {
-
         this.board = board;
         someBoardArr = new String[2][board.boardCol.length][board.boardRow.length];
     }
     
-
     public Board Horizontal(Board board)
     {
         boardSplit();
-        while(carrierError==true){
+        while(battleshipError==true){
             do{
                 getCoordinates();
                 System.out.println("Coord: " + inputX + " " + inputY);
@@ -38,14 +43,14 @@ public class Carrier extends Ships{
             inputY++;
         }
         PlayerPlacement = 0;
-        carrierError = true;
+        battleshipError = true;
         return board;
-
+        
     }
     public Board Vertical(Board board) 
     {
-    	boardSplit();
-        while(carrierError==true){
+        boardSplit();
+        while(battleshipError==true){
             do{
                 getCoordinates();
                 System.out.println("Coord: " + inputX + " " + inputY);
@@ -60,9 +65,9 @@ public class Carrier extends Ships{
             inputX++;
         }
         PlayerPlacement = 0;
-        carrierError = true;
+        battleshipError = true;
         return board;
-
+        
     }
     public void getCoordinates()
     {
@@ -80,15 +85,15 @@ public class Carrier extends Ships{
             inputY=rand.nextInt(board.boardRow.length);
         }
     }
-
+    
     public void checkHorizontalCollision(String[][] someBoardArr, int X, int Y)
     {
         for(int i =0; i<SHIP_LEN; i++){
             if(someBoardArr[Y-1+i][X-1]!=" "){
-                carrierError=true; 
+                battleshipError=true; 
                 return;
             }else{
-                carrierError=false;
+                battleshipError=false;
             }
         }
     }
@@ -96,10 +101,10 @@ public class Carrier extends Ships{
     {
         for(int i =0; i<SHIP_LEN; i++){
             if(someBoardArr[Y-1][X-1+i]!=" "){
-                carrierError=true; 
+                battleshipError=true; 
                 return;
             }else{
-                carrierError=false;
+                battleshipError=false;
             }
         }
     }
@@ -108,11 +113,11 @@ public class Carrier extends Ships{
         someBoardArr[1] = board.boardArrPlayer;
         someBoardArr[0] = board.boardArrEnemy;
     }
-
-
+    
+    
     public boolean getErrorStatus()
     {
-        return carrierError;
+        return battleshipError;
     }
     */
 }
@@ -120,5 +125,5 @@ public class Carrier extends Ships{
 
 // possible bug:
 // ships intersecting, --
-// ships being put outside of map -- New issue 
-// fix input var in vert and horiz 
+// ships being put outside of map -- New issue --fixed?
+// fix input var in vert and horiz // no need? 

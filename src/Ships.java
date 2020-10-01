@@ -1,66 +1,66 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Carrier extends Ships{
-    static int carrierLen= 5;
-    static String carrierChar = "C";
-    
-    Carrier(Board board) {
+abstract public class Ships extends Board{
 
-		super(board, carrierLen, carrierChar);
-		// TODO Auto-generated constructor stub
-	} 
-	
+    int shipLen= 1;
+    String shipChar = "Err";
+    private int inputY;
+    private int inputX;
+    public boolean shipError= true;
+    Board board;
+    private int PlayerPlacement=1;
+    String[][][] someBoardArr;
 
-	/*
-    Carrier(Board board)
+
+    Ships(Board board, int someShipLen, String somShipChar)
     {
-
+        shipLen = someShipLen;
+        shipChar = somShipChar;
         this.board = board;
         someBoardArr = new String[2][board.boardCol.length][board.boardRow.length];
     }
-    
 
     public Board Horizontal(Board board)
     {
         boardSplit();
-        while(carrierError==true){
+        while(shipError==true){
             do{
                 getCoordinates();
                 System.out.println("Coord: " + inputX + " " + inputY);
-            }while(board.boardCol.length<(inputY-1)+SHIP_LEN || inputX>board.boardCol.length);
+            }while(board.boardCol.length<(inputY-1)+shipLen || inputX>board.boardCol.length);
             checkHorizontalCollision(someBoardArr[PlayerPlacement], inputX, inputY);
         }
         System.out.println("Place Horizontally ... 5 ");
         this.board = board;
-        for(int i=0; i<SHIP_LEN; i++){
-            someBoardArr[PlayerPlacement][inputY-1][inputX-1]=SHIP_CHAR;
+        for(int i=0; i<shipLen; i++){
+            someBoardArr[PlayerPlacement][inputY-1][inputX-1]=shipChar;
             inputY++;
         }
         PlayerPlacement = 0;
-        carrierError = true;
+        shipError = true;
         return board;
 
     }
     public Board Vertical(Board board) 
     {
     	boardSplit();
-        while(carrierError==true){
+        while(shipError==true){
             do{
                 getCoordinates();
                 System.out.println("Coord: " + inputX + " " + inputY);
-            }while(board.boardCol.length<(inputX-1+SHIP_LEN) || inputY>board.boardCol.length);
-            System.out.println("Check: " + (inputX-1+SHIP_LEN) + "Boardlen" + board.boardCol.length + " " + board.boardRow.length);
+            }while(board.boardCol.length<(inputX-1+shipLen) || inputY>board.boardCol.length);
+            System.out.println("Check: " + (inputX-1+shipLen) + "Boardlen" + board.boardCol.length + " " + board.boardRow.length);
             checkVerticalCollision(someBoardArr[PlayerPlacement], inputX, inputY);
         }
         System.out.println("Place Vertically ... 5 ");    
         this.board = board;
-        for(int i=0; i<SHIP_LEN; i++){
-            someBoardArr[PlayerPlacement][inputY-1][inputX-1]=SHIP_CHAR;
+        for(int i=0; i<shipLen; i++){
+            someBoardArr[PlayerPlacement][inputY-1][inputX-1]=shipChar;
             inputX++;
         }
         PlayerPlacement = 0;
-        carrierError = true;
+        shipError = true;
         return board;
 
     }
@@ -83,23 +83,23 @@ public class Carrier extends Ships{
 
     public void checkHorizontalCollision(String[][] someBoardArr, int X, int Y)
     {
-        for(int i =0; i<SHIP_LEN; i++){
+        for(int i =0; i<shipLen; i++){
             if(someBoardArr[Y-1+i][X-1]!=" "){
-                carrierError=true; 
+                shipError=true; 
                 return;
             }else{
-                carrierError=false;
+                shipError=false;
             }
         }
     }
     public void checkVerticalCollision(String[][] someBoardArr, int X, int Y)
     {
-        for(int i =0; i<SHIP_LEN; i++){
+        for(int i =0; i<shipLen; i++){
             if(someBoardArr[Y-1][X-1+i]!=" "){
-                carrierError=true; 
+                shipError=true; 
                 return;
             }else{
-                carrierError=false;
+                shipError=false;
             }
         }
     }
@@ -112,13 +112,6 @@ public class Carrier extends Ships{
 
     public boolean getErrorStatus()
     {
-        return carrierError;
+        return shipError;
     }
-    */
 }
-
-
-// possible bug:
-// ships intersecting, --
-// ships being put outside of map -- New issue 
-// fix input var in vert and horiz 
