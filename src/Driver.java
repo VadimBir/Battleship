@@ -1,3 +1,6 @@
+import java.util.Random;
+import java.util.Scanner;
+
 public class Driver {
 
 	public static void main(String[] args) {
@@ -28,12 +31,9 @@ public class Driver {
 
 		//(C-Carries B-Battleship D-Destroyer S-Submarine P-Patrol_Boat)(H-hori V-vert)(A-..)(1-..)
 
-
-//testing zone so OOP 
-
 		
-
-
+		Random rand = new Random(); // to make horizontal or vertical to be random for AI
+		
 
 //carrier placement ----------------------------------------------------------------
 		Carrier carrier = new Carrier(board);
@@ -46,8 +46,7 @@ public class Driver {
 		//  make a user input for either horizontal or vertical
 		CarrierCtrlArr.CmdArr(1);
 		board=boardTmp;
-		//make below to be rand, either 1 or 0 
-		CarrierCtrlArr.CmdArr(0); // running the command the second time would allow to do a random ship placement for an AI. 
+		CarrierCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
 		board=boardTmp;
 
 		board.setBoard();
@@ -65,17 +64,71 @@ public class Driver {
 	//  make a user input for either horizontal or vertical
 	BattleshipCtrlArr.CmdArr(1);
 	board=boardTmp;
-	//make below to be rand, either 1 or 0 
-	BattleshipCtrlArr.CmdArr(0); // running the command the second time would allow to do a random ship placement for an AI. 
+	BattleshipCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
 	board=boardTmp;
-
 	board.setBoard();
+//-----------------------------------------------------------------
+
+
+//Destroyer placement ----------------------------------------------------------------
+	
+	Destroyer destroyer = new Destroyer(board);
+
+	Command[] CmdArrDestroyer;
+	CmdArrDestroyer = new Command[2];
+	CmdArrDestroyer[0]= new DestroyerHorizontal(destroyer, boardTmp);
+	CmdArrDestroyer[1]= new DestroyerVertical(destroyer, boardTmp);
+	ControlShipPlacement DestroyerCtrlArr= new ControlShipPlacement(CmdArrDestroyer);
+
+	//  make a user input for either horizontal or vertical
+	DestroyerCtrlArr.CmdArr(1);
+	board=boardTmp;
+	DestroyerCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
+	board=boardTmp;
+	board.setBoard();
+//-----------------------------------------------------------------
+
+//Submarine placement ----------------------------------------------------------------
+	
+	Submarine submarine = new Submarine(board);
+
+	Command[] CmdArrSubmarine;
+	CmdArrSubmarine = new Command[2];
+	CmdArrSubmarine[0]= new SubmarineHorizontal(submarine, boardTmp);
+	CmdArrSubmarine[1]= new SubmarineVertical(submarine, boardTmp);
+	ControlShipPlacement SubmarineCtrlArr= new ControlShipPlacement(CmdArrSubmarine);
+
+	//  make a user input for either horizontal or vertical
+	SubmarineCtrlArr.CmdArr(1);
+	board=boardTmp;
+	SubmarineCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
+	board=boardTmp;
+	board.setBoard();
+//-----------------------------------------------------------------
+
+//PatrolBoat placement ----------------------------------------------------------------
+	
+	PatrolBoat patrolBoat = new PatrolBoat(board);
+
+	Command[] CmdArrPatrolBoat;
+	CmdArrPatrolBoat = new Command[2];
+	CmdArrPatrolBoat[0]= new PatrolBoatHorizontal(patrolBoat, boardTmp);
+	CmdArrPatrolBoat[1]= new PatrolBoatVertical(patrolBoat, boardTmp);
+	ControlShipPlacement PatrolBoatCtrlArr= new ControlShipPlacement(CmdArrPatrolBoat);
+
+	//  make a user input for either horizontal or vertical
+	PatrolBoatCtrlArr.CmdArr(1);
+	board=boardTmp;
+	PatrolBoatCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
+	board=boardTmp;
+	board.setBoard();
+//-----------------------------------------------------------------
+//All ships are being placed 
+
+
+	
+	} //end of main
 	
 
-
-
-
-	}
-	
 
 }

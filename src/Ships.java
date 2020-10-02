@@ -28,13 +28,13 @@ abstract public class Ships extends Board{
             do{
                 getCoordinates();
                 System.out.println("Coord: " + inputX + " " + inputY);
-            }while(board.boardCol.length<(inputY-1)+shipLen || inputX>board.boardCol.length);
+            }while(board.boardCol.length<(inputY)+shipLen || inputX>board.boardCol.length);
             checkHorizontalCollision(someBoardArr[PlayerPlacement], inputX, inputY);
         }
         System.out.println("Place Horizontally ... 5 ");
         this.board = board;
         for(int i=0; i<shipLen; i++){
-            someBoardArr[PlayerPlacement][inputY-1][inputX-1]=shipChar;
+            someBoardArr[PlayerPlacement][inputY][inputX]=shipChar;
             inputY++;
         }
         PlayerPlacement = 0;
@@ -49,14 +49,14 @@ abstract public class Ships extends Board{
             do{
                 getCoordinates();
                 System.out.println("Coord: " + inputX + " " + inputY);
-            }while(board.boardCol.length<(inputX-1+shipLen) || inputY>board.boardCol.length);
-            System.out.println("Check: " + (inputX-1+shipLen) + "Boardlen" + board.boardCol.length + " " + board.boardRow.length);
+            }while(board.boardCol.length<(inputX+shipLen) || inputY>board.boardCol.length);
+            System.out.println("Check: " + (inputX+shipLen) + "Boardlen" + board.boardCol.length + " " + board.boardRow.length);
             checkVerticalCollision(someBoardArr[PlayerPlacement], inputX, inputY);
         }
         System.out.println("Place Vertically ... 5 ");    
         this.board = board;
         for(int i=0; i<shipLen; i++){
-            someBoardArr[PlayerPlacement][inputY-1][inputX-1]=shipChar;
+            someBoardArr[PlayerPlacement][inputY][inputX]=shipChar;
             inputX++;
         }
         PlayerPlacement = 0;
@@ -66,14 +66,20 @@ abstract public class Ships extends Board{
     }
     public void getCoordinates()
     {
+    	int newX;
+    	int newY;
         if(PlayerPlacement == 1){
             Scanner myObj = new Scanner(System.in);
-            System.out.println("Enter X coordinate: ");
-            int newX = myObj.nextInt();                 
-            inputX = newX;
-            System.out.println("Enter Y coordinate: ");
-            int newY = myObj.nextInt();                 // make a hash map for [A-n]=[1-n] this would allow user to choose coodrinate via letter input for Y coordinate. 
-            inputY = newY;
+            do{
+                System.out.println("Enter X coordinate: ");
+                newX = myObj.nextInt();                 
+                inputX = newX-1;
+            }while(newX<=0);
+            do{
+            	System.out.println("Enter Y coordinate: ");
+            	newY = myObj.nextInt();                 // make a hash map for [A-n]=[1-n] this would allow user to choose coodrinate via letter input for Y coordinate. 
+            	inputY = newY-1;
+            }while(newY<=0);
         } else {
             Random rand = new Random();
             inputX=rand.nextInt(board.boardCol.length);
@@ -84,7 +90,7 @@ abstract public class Ships extends Board{
     public void checkHorizontalCollision(String[][] someBoardArr, int X, int Y)
     {
         for(int i =0; i<shipLen; i++){
-            if(someBoardArr[Y-1+i][X-1]!=" "){
+            if(someBoardArr[Y+i][X]!=" "){
                 shipError=true; 
                 return;
             }else{
@@ -95,7 +101,7 @@ abstract public class Ships extends Board{
     public void checkVerticalCollision(String[][] someBoardArr, int X, int Y)
     {
         for(int i =0; i<shipLen; i++){
-            if(someBoardArr[Y-1][X-1+i]!=" "){
+            if(someBoardArr[Y][X+i]!=" "){
                 shipError=true; 
                 return;
             }else{

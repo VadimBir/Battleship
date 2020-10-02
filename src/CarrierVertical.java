@@ -1,18 +1,15 @@
 public class CarrierVertical implements Command {
     private Carrier carrier;
     private Board board;
-    //private int inputX;
-    //private int inputY;
-    public CarrierVertical(Carrier carrier, Board board/*, inputX, inputY*/) 
+
+    public CarrierVertical(Carrier carrier, Board board) 
     {
         this.carrier = carrier;
-        //this.carrier.board=board;
         this.board = board;
-        //this.inputX=inputX;
-        //1this.inputY=inputY;
     } 
-    public Board execute() {
-        carrier.Vertical(board/*, inputX, inputY*/);
+    public Board execute() 
+    {
+        carrier.Vertical(board);
         return board;
     }
 
