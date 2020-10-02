@@ -2,11 +2,10 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Carrier extends Ships{
-    static int carrierLen= 5;
-    static String carrierChar = "C";
+    final static int carrierLen= 5;
+    final static String carrierChar = "C";
     
     Carrier(Board board) {
-
 		super(board, carrierLen, carrierChar);
 		// TODO Auto-generated constructor stub
 	} 

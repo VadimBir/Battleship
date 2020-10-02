@@ -1,9 +1,9 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Battleship extends Board{ 
-    final int carrierLen= 4;
-    final String carrierChar = "B";
+public class Battleship extends Ships{ 
+    final static int carrierLen= 4;
+    final static String carrierChar = "B";
 
     Battleship(Board board) {
 		super(board, carrierLen, carrierChar);

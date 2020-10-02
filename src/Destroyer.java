@@ -1,13 +1,12 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class Destroyer extends Board{ 
-    final int destroyerLen= 3;
-    final String destroyerChar = "D";
+public class Destroyer extends Ships{ 
+    final static int destroyerLen= 3;
+    final static String destroyerChar = "D";
 
-    Battleship(Board board) {
+    Destroyer(Board board) {
 		super(board, destroyerLen, destroyerChar);
-		// TODO Auto-generated constructor stub
 	} 
 
 
