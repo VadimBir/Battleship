@@ -123,9 +123,11 @@ public class Driver {
 	board=boardTmp;
 	board.setBoard();
 //-----------------------------------------------------------------
-//All ships are being placed 
+//All ships are being placed ^^^^
 
+// Do State Pattern here
 
+	
 	
 	} //end of main
 	
