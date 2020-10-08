@@ -17,8 +17,8 @@ public class Driver {
 		System.out.println(" ");
 		//Board board2 = boardFactory.createBoard("10x10");
 		//board2.setBoard();
-		board.boardArrPlayer[4][4]="D";
-		board.boardArrEnemy[4][5]="@";
+		//board.boardArrPlayer[4][4]="D";
+		//board.boardArrEnemy[4][5]="@";
 		//board.boardArr[4][5]="@";
 		board.setBoard();
 //---------------------------
@@ -125,12 +125,32 @@ public class Driver {
 //-----------------------------------------------------------------
 //All ships are being placed ^^^^
 
+
+// Game process here 
 // Do State Pattern here
 
-	
-	
+	Coordinates shootTo = new Coordinates(board.boardCol.length); // length to find limit may be add input of board of player and make an algorith for AI
+	GameCharacter player = new GameCharacter(board.boardArrPlayer, true);
+	//player.isPlayerCharacter = true;
+	GameCharacter enemy = new GameCharacter(board.boardArrEnemy, false);
+	//enemy.isPlayerCharacter = false;
+	while(player.shipTilesLeft>0 && enemy.shipTilesLeft>0){
+
+		shootTo.getAutoCoordinates(); //getCoordinates();
+		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString());
+		player.shootEnemy(enemy, shootTo.x, shootTo.y);
+		
+		shootTo.getAutoCoordinates();
+		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateE: " + player.getState().toString());
+		enemy.shootEnemy(player, shootTo.x, shootTo.y);
+		board.boardArrPlayer = player.charBoardArr[0];
+		board.boardArrEnemy  = enemy.charBoardArr[1];  
+		board.setBoard();
+	}
 	} //end of main
 	
 
 
 }
+
+
