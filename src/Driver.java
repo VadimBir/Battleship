@@ -1,6 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
+
 public class Driver {
 
 	public static void main(String[] args) {
@@ -122,6 +123,7 @@ public class Driver {
 	PatrolBoatCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
 	board=boardTmp;
 	board.setBoard();
+	
 //-----------------------------------------------------------------
 //All ships are being placed ^^^^
 
@@ -129,23 +131,49 @@ public class Driver {
 // Game process here 
 // Do State Pattern here
 
-	Coordinates shootTo = new Coordinates(board.boardCol.length); // length to find limit may be add input of board of player and make an algorith for AI
+	Coordinates shootTo = new Coordinates(board.boardCol.length);
+	Coordinates shootToEnemy = new Coordinates(board.boardCol.length);
+	// length to find limit may be add input of board of player and make an algorith for AI
 	GameCharacter player = new GameCharacter(board.boardArrPlayer, true);
 	//player.isPlayerCharacter = true;
 	GameCharacter enemy = new GameCharacter(board.boardArrEnemy, false);
 	//enemy.isPlayerCharacter = false;
-	while(player.shipTilesLeft>0 && enemy.shipTilesLeft>0){
+	while(player.getState()!=player.getWinState() && player.getState()!=player.getLostState()){
 
 		shootTo.getAutoCoordinates(); //getCoordinates();
-		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString());
+		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString() + " HP: " + player.shipTilesLeft);
 		player.shootEnemy(enemy, shootTo.x, shootTo.y);
 		
-		shootTo.getAutoCoordinates();
-		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateE: " + player.getState().toString());
+		shootToEnemy.getAutoCoordinates();
+		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + " StateE: " + enemy.getState().toString() + " HP: " + enemy.shipTilesLeft);
 		enemy.shootEnemy(player, shootTo.x, shootTo.y);
 		board.boardArrPlayer = player.charBoardArr[0];
 		board.boardArrEnemy  = enemy.charBoardArr[1];  
 		board.setBoard();
+		
+		if (player.shipTilesLeft==1) {
+			System.out.println("Player Nearly Lost");
+		}
+		/*
+		if (player.shipTilesLeft==0){
+			player.lostGame=true;
+			enemy.wonGame=true;
+		}
+		if (enemy.shipTilesLeft==0){
+			enemy.lostGame=true;
+			player.wonGame=true;
+		}
+		*/
+	}
+	System.out.println("After Game Loop");
+	System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString());
+	System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateE: " + enemy.getState().toString());
+	
+	if(player.getState()==player.getWinState()) {
+		System.out.println("Player Has Won !!!!!!!!!!!!!");
+	}
+	if(player.getState()==player.getLostState()) {
+		System.out.println("Player Has Lost !!!!!!!!!!!!!");
 	}
 	} //end of main
 	

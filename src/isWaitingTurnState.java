@@ -2,6 +2,7 @@ public class isWaitingTurnState implements State{
     
     GameCharacter character;
     int shipTilesLeft;
+    boolean isHit = false;
     
 
     public isWaitingTurnState(GameCharacter character)
@@ -31,19 +32,38 @@ public class isWaitingTurnState implements State{
         */
             //technically I think I can remove the player check, ... 
     	//the boardArr is not being passed 
-            if( character.charBoardArr[0][y][x] != " " && character.charBoardArr[0][y][x] != "X"){
+            if( character.charBoardArr[0][y][x] != " " && character.charBoardArr[0][y][x] != "X" && character.charBoardArr[0][y][x] != "@"){
                 character.charBoardArr[0][y][x] = "@";
+                isHit = true;
                 if(character.getIsPlayerCharacter() == false){
                     character.charBoardArr[1][y][x] = "@"; // clean map that would be shown to a human player
                 }
-                character.shipTilesLeft = character.shipTilesLeft -1;
+                if(isHit == true) {
+                	character.shipTilesLeft = character.shipTilesLeft -1;
+                	System.out.println("Player? " + character.isPlayerCharacter + "HP? " + character.shipTilesLeft);
+                	isHit = false;
+                }
                 if(character.shipTilesLeft == 0){
                     character.setState(character.getLostState());
                 }else{
                     character.setState(character.getIsCurrentTurnState());
                 }
             }else{
-                character.charBoardArr[0][y][x] ="X";
+                if (character.charBoardArr[0][y][x] != "X" && character.charBoardArr[0][y][x] != "@") {
+                    character.charBoardArr[0][y][x] ="X";            		
+                }  
+                /*
+                else if(character.charBoardArr[0][y][x] == "X" || character.charBoardArr[0][y][x] == "@"){
+            		Coordinates shootTo = new Coordinates(character.charBoardArr.length);
+            		if(character.getIsPlayerCharacter() == false){            			
+            		shootTo.getAutoCoordinates();
+            		gotShot(shootTo.x, shootTo.y);
+            		}else {
+            			shootTo.getAutoCoordinates(); // change this to non auto coz its a player input 
+                		gotShot(shootTo.x, shootTo.y);
+            		} 
+            	} 
+            	*/
                 if(character.getIsPlayerCharacter() ==false){
                     character.charBoardArr[1][y][x] ="X";
                 }

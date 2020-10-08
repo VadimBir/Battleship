@@ -11,10 +11,16 @@ public class isCurrentTurnState implements State{
     }
     public void shootEnemy(GameCharacter enemy, int x, int y)
     {
+
         System.out.println("Shoot enemy method ...");
         //System.out.println("Please enter the Row where you want to shoot:");
 
         enemy.gotShot(x,y);
+        if (enemy.shipTilesLeft ==0) {
+        	enemy.setState(enemy.getLostState());
+        	character.setState(character.getWinState());
+        	return;
+        }
         character.setState(character.getIsWaitingState());
 
 

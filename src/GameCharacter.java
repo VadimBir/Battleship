@@ -6,6 +6,8 @@ public class GameCharacter {
     State winState;
     State lostState;
     State state;
+    boolean wonGame = false;
+    boolean lostGame = false;
 
     int shipTilesLeft = 17;
 //double check num !!!!!!!! -----------------------------------------
@@ -51,7 +53,11 @@ public class GameCharacter {
         }
 
     }
-
+    public void checkWinLost() {
+		if(shipTilesLeft==0) {
+			state = lostState;
+		}
+	}
     public void setState(State state)
     {
         this.state = state;
