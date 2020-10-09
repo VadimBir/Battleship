@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Battleship extends Ships{ 
+public class Battleship extends Ships implements Serializable{ 
     final static int carrierLen= 4;
     final static String carrierChar = "B";
 

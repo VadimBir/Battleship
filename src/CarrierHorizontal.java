@@ -1,4 +1,6 @@
-public class CarrierHorizontal implements Command{
+import java.io.Serializable;
+
+public class CarrierHorizontal implements Command, Serializable{
     private Carrier carrier;
     private Board board;
 

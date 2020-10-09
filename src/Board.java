@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Arrays;
 
-abstract public class Board {
+abstract public class Board implements Serializable{
 	boolean initialised;
 	String[][] boardArrPlayer;
 	String[][] boardArrEnemy;

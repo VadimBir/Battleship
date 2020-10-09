@@ -1,8 +1,9 @@
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Coordinates {
+public class Coordinates implements Serializable {
     int x;
     int y;
     int MapSize;

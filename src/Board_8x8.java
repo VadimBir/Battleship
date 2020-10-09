@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Board_8x8 extends Board{
+public class Board_8x8 extends Board implements Serializable{
 	public Board_8x8()
 	{ 
 		initialised = false;

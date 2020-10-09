@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class BoardFactory {
+public class BoardFactory implements Serializable{
 	public Board createBoard(String string) {
 		Board board = null;
 		if(string.equals("8x8")) {

@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Submarine extends Ships{ 
+public class Submarine extends Ships implements Serializable{ 
     final static int submarineLen= 3;
     final static String submarineChar = "S";
 

@@ -1,4 +1,6 @@
-public class DestroyerVertical implements Command{
+import java.io.Serializable;
+
+public class DestroyerVertical implements Command, Serializable{
     private Destroyer destroyer;
     private Board board;
 

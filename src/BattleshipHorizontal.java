@@ -1,4 +1,6 @@
-public class BattleshipHorizontal implements Command{
+import java.io.Serializable;
+
+public class BattleshipHorizontal implements Command, Serializable{
     private Battleship battleship;
     private Board board;
 

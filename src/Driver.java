@@ -1,26 +1,106 @@
 import java.util.Random;
 import java.util.Scanner;
+import java.awt.print.Printable;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
+public class Driver implements Serializable{
 
-public class Driver {
-
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException, ClassNotFoundException {
 		
-//working building board and drawing it using factory mode 
+		//final Path path = Files.createTempFile("gameSave", ".save");
+		//String current = System.getProperty("user.dir")+"\\gameSave.save";
+		//System.out.println(current);
+		//boolean saveExists = false;
+		String curPath;
+		final String fileName="game";		
+		Path directoryPath = Paths.get("");
+		curPath =directoryPath.toAbsolutePath().toString();
+		
+		File fileCheck=new File(directoryPath+fileName+".sav");
+		/*
+		boolean testFile=fileCheck.exists();
+//assign folder path 
+		String toFilePath=curPath+ File.separator +fileName; //path to inward the folder
+		
+		//File tempFile = new File(current);
+		*/
+		//saveExists = tempFile.exists();
+		if(fileCheck.exists()==true) {
+			System.out.println("There is a Save File !!");
+		}else {
+			System.out.println("No save File");
+		}
+		
+		
+		System.out.println("Working Directory = " + System.getProperty("user.dir"));
+		//Driver obj = new Driver();
+
+		
+		Game game = new Game();
+		if (fileCheck.exists()==true) {
+			game = ReadSaveGame();
+		}else {
+			game.ChooseBoard();
+			game.ShipPlacement();
+			
+		}
+		//SaveGame(game);
+		System.out.println(" ");
+		game.GameProcess();
+	}
+	
+	public static void SaveGame(Game game) throws IOException
+	{
+		
+		ObjectOutputStream objectOutputStream = new ObjectOutputStream(
+                new FileOutputStream("game.sav"));
+        objectOutputStream.writeObject(game);
+        objectOutputStream.close();
+
+		
+		
+		/*
+		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(System.getProperty("user.dir")+ "\\gameSave.save")); 
+			oos.writeObject(game);
+			System.out.println("Done");
+			*/
+		
+	}
+	public static Game ReadSaveGame() throws FileNotFoundException, IOException, ClassNotFoundException
+	{
+		
+		//Game game = null;
+		
+		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("game.sav"));
+        Object game = objectInputStream.readObject();
+        objectInputStream.close();
+		return (Game) game;
+		
+	}
+	
+}
+
+
+		/*
 //two boards available 8x8 and 10x10
 		BoardFactory boardFactory = new BoardFactory();
 		Board board = boardFactory.createBoard("10x10");
 		Board boardTmp = board;
-		//Board boardEnemy = boardFactory.createBoard("8x8");
+
 		board.setBoard();
-		//board.setBoard();
+
 
 		System.out.println(" ");
-		//Board board2 = boardFactory.createBoard("10x10");
-		//board2.setBoard();
-		//board.boardArrPlayer[4][4]="D";
-		//board.boardArrEnemy[4][5]="@";
-		//board.boardArr[4][5]="@";
+
 		board.setBoard();
 //---------------------------
 		
@@ -45,6 +125,10 @@ public class Driver {
 		ControlShipPlacement CarrierCtrlArr= new ControlShipPlacement(CmdArrCarrier);
 		
 		//  make a user input for either horizontal or vertical
+		System.out.println("Please choose the way you want to put the Carreir Ship: ");
+		System.out.println("1 Horizontal.");
+		System.out.println("2 Vertical.");
+
 		CarrierCtrlArr.CmdArr(1);
 		board=boardTmp;
 		CarrierCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
@@ -164,6 +248,7 @@ public class Driver {
 			player.wonGame=true;
 		}
 		*/
+	/*
 	}
 	System.out.println("After Game Loop");
 	System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString());
@@ -175,10 +260,11 @@ public class Driver {
 	if(player.getState()==player.getLostState()) {
 		System.out.println("Player Has Lost !!!!!!!!!!!!!");
 	}
-	} //end of main
+	*/
+	//} //end of main
 	
 
 
-}
+//}
 
 

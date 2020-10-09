@@ -1,4 +1,6 @@
-public class SubmarineHorizontal implements Command{
+import java.io.Serializable;
+
+public class SubmarineHorizontal implements Command, Serializable{
     private Submarine submarine;
     private Board board;
 

@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Destroyer extends Ships{ 
+public class Destroyer extends Ships implements Serializable{ 
     final static int destroyerLen= 3;
     final static String destroyerChar = "D";
 

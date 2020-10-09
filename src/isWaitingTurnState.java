@@ -32,8 +32,11 @@ public class isWaitingTurnState implements State{
         */
             //technically I think I can remove the player check, ... 
     	//the boardArr is not being passed 
-            if( character.charBoardArr[0][y][x] != " " && character.charBoardArr[0][y][x] != "X" && character.charBoardArr[0][y][x] != "@"){
-                character.charBoardArr[0][y][x] = "@";
+    	//char tmpChar = character.charBoardArr[0][y][x].charAt(0);
+    	//String toCheckString = String.valueOf(tmpChar);
+            if(!character.charBoardArr[0][y][x].equals(" ") && !character.charBoardArr[0][y][x].equals("X") && !character.charBoardArr[0][y][x].equals("@")){
+            	//System.out.println("What is it sooting? " + "'" + character.charBoardArr[0][y][x]+ "'" );
+            	character.charBoardArr[0][y][x] = "@";
                 isHit = true;
                 if(character.getIsPlayerCharacter() == false){
                     character.charBoardArr[1][y][x] = "@"; // clean map that would be shown to a human player

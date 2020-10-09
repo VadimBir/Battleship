@@ -1,7 +1,8 @@
+import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-abstract public class Ships extends Board{
+abstract public class Ships extends Board implements Serializable{
 
     int shipLen= 1;
     String shipChar = "Err";
