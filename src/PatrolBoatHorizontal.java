@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class PatrolBoatHorizontal implements Command, Serializable{
+public class PatrolBoatHorizontal implements Command{
     private PatrolBoat patrolBoat;
     private Board board;
 

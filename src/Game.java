@@ -8,6 +8,7 @@ public class Game implements Serializable{
 	Board board;
 	Board boardTmp;
 	Random rand; // to make horizontal or vertical to be random for AI
+	
     
     Game()
     {
@@ -30,6 +31,7 @@ public class Game implements Serializable{
     }
     public void ShipPlacement()
     {
+		int shipOrientationUserInput;
     	//carrier placement ----------------------------------------------------------------
     			Carrier carrier = new Carrier(board);
     			Command[] CmdArrCarrier;
@@ -42,8 +44,8 @@ public class Game implements Serializable{
     			System.out.println("Please choose the way you want to put the Carreir Ship: ");
     			System.out.println("1 Horizontal.");
     			System.out.println("2 Vertical.");
-
-    			CarrierCtrlArr.CmdArr(1);
+				shipOrientationUserInput = ShipOrientationInput();
+    			CarrierCtrlArr.CmdArr(shipOrientationUserInput);
     			board=boardTmp;
     			CarrierCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     			board=boardTmp;
@@ -60,8 +62,13 @@ public class Game implements Serializable{
     		CmdArrBattleship[1]= new BattleshipVertical(battleship, boardTmp);
     		ControlShipPlacement BattleshipCtrlArr= new ControlShipPlacement(CmdArrBattleship);
 
-    		//  make a user input for either horizontal or vertical
-    		BattleshipCtrlArr.CmdArr(1);
+			//  make a user input for either horizontal or vertical
+			System.out.println("Please choose the way you want to put the Carreir Ship: ");
+			System.out.println("1 Horizontal.");
+			System.out.println("2 Vertical.");
+			shipOrientationUserInput = ShipOrientationInput();
+
+    		BattleshipCtrlArr.CmdArr(shipOrientationUserInput);
     		board=boardTmp;
     		BattleshipCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
@@ -79,8 +86,12 @@ public class Game implements Serializable{
     		CmdArrDestroyer[1]= new DestroyerVertical(destroyer, boardTmp);
     		ControlShipPlacement DestroyerCtrlArr= new ControlShipPlacement(CmdArrDestroyer);
 
-    		//  make a user input for either horizontal or vertical
-    		DestroyerCtrlArr.CmdArr(1);
+			//  make a user input for either horizontal or vertical
+			System.out.println("Please choose the way you want to put the Carreir Ship: ");
+			System.out.println("1 Horizontal.");
+			System.out.println("2 Vertical.");
+			shipOrientationUserInput = ShipOrientationInput();
+    		DestroyerCtrlArr.CmdArr(shipOrientationUserInput);
     		board=boardTmp;
     		DestroyerCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
@@ -97,8 +108,13 @@ public class Game implements Serializable{
     		CmdArrSubmarine[1]= new SubmarineVertical(submarine, boardTmp);
     		ControlShipPlacement SubmarineCtrlArr= new ControlShipPlacement(CmdArrSubmarine);
 
-    		//  make a user input for either horizontal or vertical
-    		SubmarineCtrlArr.CmdArr(1);
+			//  make a user input for either horizontal or vertical
+			System.out.println("Please choose the way you want to put the Carreir Ship: ");
+			System.out.println("1 Horizontal.");
+			System.out.println("2 Vertical.");
+			shipOrientationUserInput = ShipOrientationInput();
+
+    		SubmarineCtrlArr.CmdArr(shipOrientationUserInput);
     		board=boardTmp;
     		SubmarineCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
@@ -115,8 +131,13 @@ public class Game implements Serializable{
     		CmdArrPatrolBoat[1]= new PatrolBoatVertical(patrolBoat, boardTmp);
     		ControlShipPlacement PatrolBoatCtrlArr= new ControlShipPlacement(CmdArrPatrolBoat);
 
-    		//  make a user input for either horizontal or vertical
-    		PatrolBoatCtrlArr.CmdArr(1);
+			//  make a user input for either horizontal or vertical
+			System.out.println("Please choose the way you want to put the Carreir Ship: ");
+			System.out.println("1 Horizontal.");
+			System.out.println("2 Vertical.");
+			shipOrientationUserInput = ShipOrientationInput();
+
+    		PatrolBoatCtrlArr.CmdArr(shipOrientationUserInput);
     		board=boardTmp;
     		PatrolBoatCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
@@ -171,6 +192,26 @@ public class Game implements Serializable{
     			System.out.println("Player Has Lost !!!!!!!!!!!!!");
     		}
     }
+    public int ShipOrientationInput() {
+    	String input ="-1";
+    	Scanner userScan = new Scanner(System.in);
+		while (!(input.equals("1")||!(input.equals("2"))) {
+			System.out.println("1 Horizontal.");
+			System.out.println("2 Vertical.");
+			input=userScan.nextLine();
+				
+			switch(input) {
+				case "1":
+					return 1;
+				case "2":
+					return 2;
+				//case "q":
+				//	return -1; // for game menu
+			}
+		}
+		return 0;
+		
+	}
 
 
 

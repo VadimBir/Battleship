@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Destroyer extends Ships implements Serializable{ 
+public class Destroyer extends Ships{ 
     final static int destroyerLen= 3;
     final static String destroyerChar = "D";
 

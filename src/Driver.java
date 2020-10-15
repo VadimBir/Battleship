@@ -20,12 +20,14 @@ public class Driver implements Serializable{
 		//String current = System.getProperty("user.dir")+"\\gameSave.save";
 		//System.out.println(current);
 		//boolean saveExists = false;
+		/*
 		String curPath;
 		final String fileName="game";		
 		Path directoryPath = Paths.get("");
 		curPath =directoryPath.toAbsolutePath().toString();
-		
 		File fileCheck=new File(directoryPath+fileName+".sav");
+		*/
+		
 		/*
 		boolean testFile=fileCheck.exists();
 //assign folder path 
@@ -34,11 +36,7 @@ public class Driver implements Serializable{
 		//File tempFile = new File(current);
 		*/
 		//saveExists = tempFile.exists();
-		if(fileCheck.exists()==true) {
-			System.out.println("There is a Save File !!");
-		}else {
-			System.out.println("No save File");
-		}
+
 		
 		
 		System.out.println("Working Directory = " + System.getProperty("user.dir"));
@@ -46,6 +44,29 @@ public class Driver implements Serializable{
 
 		
 		Game game = new Game();
+		//game = SaveFileCheck(); // checks and reads the game save file
+		SaveGame(game);			
+		System.out.println(" ");
+		game.GameProcess();
+	}
+	
+	
+	public static Game SaveFileCheck() throws FileNotFoundException, ClassNotFoundException, IOException
+	{
+		String curPath;
+		final String fileName="game";		
+		Path directoryPath = Paths.get("");
+		curPath =directoryPath.toAbsolutePath().toString();
+		File fileCheck=new File(directoryPath+fileName+".sav");
+		
+		if(fileCheck.exists()==true) {
+			System.out.println("There is a Save File !!");
+		}else {
+			System.out.println("No save File");
+		}
+		
+		
+		Game game = null;
 		if (fileCheck.exists()==true) {
 			game = ReadSaveGame();
 		}else {
@@ -53,9 +74,7 @@ public class Driver implements Serializable{
 			game.ShipPlacement();
 			
 		}
-		//SaveGame(game);
-		System.out.println(" ");
-		game.GameProcess();
+		return game;
 	}
 	
 	public static void SaveGame(Game game) throws IOException
@@ -66,20 +85,10 @@ public class Driver implements Serializable{
         objectOutputStream.writeObject(game);
         objectOutputStream.close();
 
-		
-		
-		/*
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(System.getProperty("user.dir")+ "\\gameSave.save")); 
-			oos.writeObject(game);
-			System.out.println("Done");
-			*/
-		
 	}
 	public static Game ReadSaveGame() throws FileNotFoundException, IOException, ClassNotFoundException
 	{
-		
-		//Game game = null;
-		
+
 		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("game.sav"));
         Object game = objectInputStream.readObject();
         objectInputStream.close();

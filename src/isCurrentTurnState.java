@@ -1,7 +1,7 @@
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class isCurrentTurnState implements State, Serializable{
+public class isCurrentTurnState implements State{
     
     GameCharacter character;
     int shipTilesLeft;

@@ -2,7 +2,7 @@ import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class PatrolBoat extends Ships implements Serializable{ 
+public class PatrolBoat extends Ships{ 
     final static int patrolBoatLen= 2;
     final static String patrolBoatChar = "P";
 

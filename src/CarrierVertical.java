@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class CarrierVertical implements Command, Serializable {
+public class CarrierVertical implements Command{
     private Carrier carrier;
     private Board board;
 

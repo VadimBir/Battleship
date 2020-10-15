@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class Board_10x10 extends Board implements Serializable{
+public class Board_10x10 extends Board{
 	public Board_10x10()
 	{ 
 		initialised = false;

@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class ControlShipPlacement implements Serializable {
+public class ControlShipPlacement{
 
     private Command Cmd[];
 

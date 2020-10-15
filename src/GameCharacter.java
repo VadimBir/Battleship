@@ -1,14 +1,11 @@
-import java.io.Serializable;
 import java.util.Arrays;
 
-public class GameCharacter implements Serializable{
+public class GameCharacter {
     State iscurrentturnState;
     State iswaitingState;
     State winState;
     State lostState;
     State state;
-    boolean wonGame = false;
-    boolean lostGame = false;
 
     int shipTilesLeft = 17;
 //double check num !!!!!!!! -----------------------------------------
@@ -54,11 +51,7 @@ public class GameCharacter implements Serializable{
         }
 
     }
-    public void checkWinLost() {
-		if(shipTilesLeft==0) {
-			state = lostState;
-		}
-	}
+
     public void setState(State state)
     {
         this.state = state;
@@ -66,6 +59,12 @@ public class GameCharacter implements Serializable{
     public State getState()
     {
         return state;
+    }
+    public void getStringState()
+    {
+        state.				// check last version 
+
+
     }
     public State getLostState()
     {

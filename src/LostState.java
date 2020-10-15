@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class LostState implements State, Serializable{
+public class LostState implements State{
 	GameCharacter character;
 	public LostState(GameCharacter gameCharacter) {
 		this.character = gameCharacter;

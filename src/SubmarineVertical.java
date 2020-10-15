@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class SubmarineVertical implements Command, Serializable{
+public class SubmarineVertical implements Command{
     private Submarine submarine;
     private Board board;
 
