@@ -174,7 +174,7 @@ public class Game extends Play implements Serializable{
     			player.shootEnemy(enemy, shootTo.x, shootTo.y); 
     			
     			shootToEnemy.getAutoCoordinates();
-    			System.out.println("Location: " + shootTo.x + " and " + shootTo.y + " StateE: " + enemy.getState().toString() + " HP: " + enemy.shipTilesLeft);
+    			System.out.println("Location: " + shootToEnemy.x + " and " + shootToEnemy.y + " StateE: " + enemy.getState().toString() + " HP: " + enemy.shipTilesLeft);
     			enemy.shootEnemy(player, shootToEnemy.x, shootToEnemy.y);
     			board.boardArrPlayer = player.charBoardArr[0];
     			board.boardArrEnemy  = enemy.charBoardArr[1];  
