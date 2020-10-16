@@ -67,17 +67,26 @@ abstract public class Ships extends Board{
     public void getCoordinates()
     {
     	int newX;
-    	int newY;
+        int newY;
+        String tmpInput = "Null";
         if(PlayerPlacement == 1){
             Scanner myObj = new Scanner(System.in);
             do{
-                System.out.println("Enter X coordinate: ");
-                newX = myObj.nextInt();                 
+                while (!isNumeric(tmpInput)) {
+                    System.out.println("Enter X coordinate: ");
+                    tmpInput = myObj.nextLine();
+                }
+                newX = Integer.parseInt(tmpInput);  
+                tmpInput = "Null"  ;             
                 inputX = newX-1;
             }while(newX<=0);
             do{
-            	System.out.println("Enter Y coordinate: ");
-            	newY = myObj.nextInt();                 // make a hash map for [A-n]=[1-n] this would allow user to choose coodrinate via letter input for Y coordinate. 
+                while (!isNumeric(tmpInput)) {
+                    System.out.println("Enter Y coordinate: ");
+                    tmpInput = myObj.nextLine();
+                }
+                newY = Integer.parseInt(tmpInput);
+                tmpInput = "Null" ;                // make a hash map for [A-n]=[1-n] this would allow user to choose coodrinate via letter input for Y coordinate. 
             	inputY = newY-1;
             }while(newY<=0);
         } else {
@@ -119,5 +128,16 @@ abstract public class Ships extends Board{
     public boolean getErrorStatus()
     {
         return shipError;
+    }
+    public static boolean isNumeric(String strNum) {
+        if (strNum == null) {
+            return false;
+        }
+        try {
+            double d = Double.parseDouble(strNum);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        return true;
     }
 }

@@ -62,7 +62,7 @@ public class GameCharacter {
     }
     public void getStringState()
     {
-        state.				// check last version 
+        //state.				// check last version 
 
 
     }

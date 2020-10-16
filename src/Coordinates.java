@@ -1,28 +1,51 @@
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Coordinates{
+public class Coordinates extends Driver{
     int x;
     int y;
-    int MapSize;
+    int mapSize;
     Scanner myObj = new Scanner(System.in);
     boolean[][] isAlreadyShot;
-    public Coordinates(int Mapsize) 
+    boolean backToMenu = false;
+    public Coordinates(int mapsize) 
     {
-        this.MapSize = Mapsize;
-        isAlreadyShot = new boolean[Mapsize][Mapsize];
+        this.mapSize = mapsize;
+        isAlreadyShot = new boolean[mapsize][mapsize];
         for (boolean[] row1 : isAlreadyShot) {
             Arrays.fill(row1, false);
         }
 	}
     public void getCoordinates(){
+    	String tmpInput = "Null";
         do{
-            System.out.println("Enter X coordinate of where to shoot: ");
-            x = myObj.nextInt()-1;         
-            System.out.println("Enter Y coordinate of where to shoot: ");
-            y = myObj.nextInt()-1;
+            do {
+	        	do {
+	            	System.out.println("Enter X coordinate of where to shoot: (b) go to main menu");
+	            	tmpInput = myObj.nextLine();
+                }while (!Ships.isNumeric(tmpInput) && !tmpInput.equals("b"));
+	        	if(tmpInput.equals("b")) {
+	        		backToMenu = true;	
+	        		return;
+	        	}
+        		x = Integer.parseInt(tmpInput)-1;  
+	  
+            }while(mapSize<=x || x>=mapSize || x<0 );
+            tmpInput = "Null";
+                
+            do {
+	        	do {
+	            	System.out.println("Enter Y coordinate of where to shoot: (b) go to main menu");
+	            	tmpInput = myObj.nextLine();
+	            }while (!Ships.isNumeric(tmpInput) && !tmpInput.equals("b"));
+	        	if(tmpInput.equals("b")) {
+	        		backToMenu = true;	
+	        		return;
+	        	}
+	            y = Integer.parseInt(tmpInput)-1;  
+            }while(mapSize<=y || y>=mapSize || y<0);
+            tmpInput = "Null";
         }while(isAlreadyShot[y][x]==true);
         isAlreadyShot[y][x]=true;
     }
@@ -30,8 +53,8 @@ public class Coordinates{
     {
         Random rand = new Random();
         do{
-            x=rand.nextInt(MapSize);
-            y=rand.nextInt(MapSize);
+            x=rand.nextInt(mapSize);
+            y=rand.nextInt(mapSize);
         }while(isAlreadyShot[y][x]==true);
         isAlreadyShot[y][x]=true;
     }

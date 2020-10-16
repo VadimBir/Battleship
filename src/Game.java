@@ -31,7 +31,6 @@ public class Game implements Serializable{
     }
     public void ShipPlacement()
     {
-		int shipOrientationUserInput;
     	//carrier placement ----------------------------------------------------------------
     			Carrier carrier = new Carrier(board);
     			Command[] CmdArrCarrier;
@@ -42,10 +41,8 @@ public class Game implements Serializable{
     			
     			//  make a user input for either horizontal or vertical
     			System.out.println("Please choose the way you want to put the Carreir Ship: ");
-    			System.out.println("1 Horizontal.");
-    			System.out.println("2 Vertical.");
-				shipOrientationUserInput = ShipOrientationInput();
-    			CarrierCtrlArr.CmdArr(shipOrientationUserInput);
+							
+				CarrierCtrlArr.CmdArr(ShipOrientationInput()-1);
     			board=boardTmp;
     			CarrierCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     			board=boardTmp;
@@ -64,11 +61,8 @@ public class Game implements Serializable{
 
 			//  make a user input for either horizontal or vertical
 			System.out.println("Please choose the way you want to put the Carreir Ship: ");
-			System.out.println("1 Horizontal.");
-			System.out.println("2 Vertical.");
-			shipOrientationUserInput = ShipOrientationInput();
-
-    		BattleshipCtrlArr.CmdArr(shipOrientationUserInput);
+			
+    		BattleshipCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
     		BattleshipCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
@@ -88,10 +82,7 @@ public class Game implements Serializable{
 
 			//  make a user input for either horizontal or vertical
 			System.out.println("Please choose the way you want to put the Carreir Ship: ");
-			System.out.println("1 Horizontal.");
-			System.out.println("2 Vertical.");
-			shipOrientationUserInput = ShipOrientationInput();
-    		DestroyerCtrlArr.CmdArr(shipOrientationUserInput);
+			    		DestroyerCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
     		DestroyerCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
@@ -110,11 +101,8 @@ public class Game implements Serializable{
 
 			//  make a user input for either horizontal or vertical
 			System.out.println("Please choose the way you want to put the Carreir Ship: ");
-			System.out.println("1 Horizontal.");
-			System.out.println("2 Vertical.");
-			shipOrientationUserInput = ShipOrientationInput();
-
-    		SubmarineCtrlArr.CmdArr(shipOrientationUserInput);
+			
+    		SubmarineCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
     		SubmarineCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
@@ -133,11 +121,8 @@ public class Game implements Serializable{
 
 			//  make a user input for either horizontal or vertical
 			System.out.println("Please choose the way you want to put the Carreir Ship: ");
-			System.out.println("1 Horizontal.");
-			System.out.println("2 Vertical.");
-			shipOrientationUserInput = ShipOrientationInput();
-
-    		PatrolBoatCtrlArr.CmdArr(shipOrientationUserInput);
+			
+    		PatrolBoatCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
     		PatrolBoatCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
@@ -149,24 +134,27 @@ public class Game implements Serializable{
     
     public void GameProcess()
     {
-    	board.setBoard();
+    	//board.setBoard();  uncomment to see enemy's board before the game starts
     	// Game process here 
 
     		Coordinates shootTo = new Coordinates(board.boardCol.length);
     		Coordinates shootToEnemy = new Coordinates(board.boardCol.length);
     		// length to find limit may be add input of board of player and make an algorith for AI
     		GameCharacter player = new GameCharacter(board.boardArrPlayer, true);
-    		//player.isPlayerCharacter = true;
+    		
     		GameCharacter enemy = new GameCharacter(board.boardArrEnemy, false);
-    		//enemy.isPlayerCharacter = false;
+
     		
     		
     		
     		//loop Part 
     		while(player.getState()!=player.getWinState() && player.getState()!=player.getLostState()){
 
-    			shootTo.getAutoCoordinates(); //getCoordinates();
-    			System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString() + " HP: " + player.shipTilesLeft);
+    			shootTo.getCoordinates(); //getAutoCoordinates(); ;
+				if(shootTo.backToMenu){
+					return;
+				}
+				System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString() + " HP: " + player.shipTilesLeft);
     			player.shootEnemy(enemy, shootTo.x, shootTo.y);
     			
     			shootToEnemy.getAutoCoordinates();
@@ -195,9 +183,9 @@ public class Game implements Serializable{
     public int ShipOrientationInput() {
     	String input ="-1";
     	Scanner userScan = new Scanner(System.in);
-		while (!(input.equals("1")||!(input.equals("2"))) {
-			System.out.println("1 Horizontal.");
-			System.out.println("2 Vertical.");
+		while (!(input.equals("1")&&!(input.equals("2")))) {
+			System.out.println("1 Vertical.");
+			System.out.println("2 Horizontal.");
 			input=userScan.nextLine();
 				
 			switch(input) {
@@ -209,6 +197,7 @@ public class Game implements Serializable{
 				//	return -1; // for game menu
 			}
 		}
+		System.out.println("after orientation input");
 		return 0;
 		
 	}

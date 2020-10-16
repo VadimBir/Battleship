@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
-import java.awt.print.Printable;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -37,64 +37,62 @@ public class Driver implements Serializable{
 		*/
 		//saveExists = tempFile.exists();
 
+
+
 		
 		
 		System.out.println("Working Directory = " + System.getProperty("user.dir"));
 		//Driver obj = new Driver();
 
 		
-		Game game = new Game();
+		//Game game = new Game();
+		GameMenu();
 		//game = SaveFileCheck(); // checks and reads the game save file
-		SaveGame(game);			
-		System.out.println(" ");
-		game.GameProcess();
+	
+		//System.out.println(" ");
+		//game.GameProcess();
 	}
-	
-	
-	public static Game SaveFileCheck() throws FileNotFoundException, ClassNotFoundException, IOException
+
+	public static void GameMenu() throws FileNotFoundException, ClassNotFoundException, IOException
 	{
-		String curPath;
-		final String fileName="game";		
-		Path directoryPath = Paths.get("");
-		curPath =directoryPath.toAbsolutePath().toString();
-		File fileCheck=new File(directoryPath+fileName+".sav");
-		
-		if(fileCheck.exists()==true) {
-			System.out.println("There is a Save File !!");
-		}else {
-			System.out.println("No save File");
-		}
-		
-		
-		Game game = null;
-		if (fileCheck.exists()==true) {
-			game = ReadSaveGame();
-		}else {
-			game.ChooseBoard();
-			game.ShipPlacement();
+		Scanner userScan = new Scanner(System.in);
+		String userinput = "-1";
+
+
+		while(!(userinput.equals("4"))) {
 			
+		System.out.println("\t Game Menu:");
+		System.out.println("1. Play");
+		System.out.println("2. Resume");
+		System.out.println("3. How to play \n");
+		System.out.println("4. Quit\n");
+		userinput= userScan.nextLine();
+		callMenuObj(userinput);
 		}
-		return game;
+	}
+	public static void callMenuObj(String userInput) throws FileNotFoundException, ClassNotFoundException, IOException
+	{
+		switch(userInput) {
+			case "1":
+			Menu play = new Play();
+				play.Display(); 
+				break;
+			case "2":
+				Menu resume = new Resume();
+				resume.Display();
+				break;
+			case "3":
+			Menu howTo = new HowTo();
+				howTo.Display();
+				break;
+			case "4":
+				Menu quit = new Quit();
+				quit.Display();
+				break;
+		}
 	}
 	
-	public static void SaveGame(Game game) throws IOException
-	{
-		
-		ObjectOutputStream objectOutputStream = new ObjectOutputStream(
-                new FileOutputStream("game.sav"));
-        objectOutputStream.writeObject(game);
-        objectOutputStream.close();
 
-	}
-	public static Game ReadSaveGame() throws FileNotFoundException, IOException, ClassNotFoundException
-	{
-
-		ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("game.sav"));
-        Object game = objectInputStream.readObject();
-        objectInputStream.close();
-		return (Game) game;
-		
-	}
 	
 }
 
