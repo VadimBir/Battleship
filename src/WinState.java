@@ -1,6 +1,6 @@
 import java.io.Serializable;
 
-public class WinState implements State{
+public class WinState implements State, Serializable{
 	GameCharacter character;
 	public WinState(GameCharacter gameCharacter) {
 		this.character = gameCharacter;

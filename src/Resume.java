@@ -19,7 +19,7 @@ public class Resume extends Menu{
         SaveFileCheck();
     }
 
-    public static Game SaveFileCheck() throws FileNotFoundException, ClassNotFoundException, IOException
+    public static void SaveFileCheck() throws FileNotFoundException, ClassNotFoundException, IOException
 	{
 		String curPath;
 		final String fileName="game";		
@@ -42,11 +42,12 @@ public class Resume extends Menu{
             }
             if (input.equals("Y")){
                 game = ReadSaveGame(); 
-        		game.GameProcess();
+                game.gameLoaded = true;
+        		game.GameProcess(game);
             }
             input = "-1";
 		}
-		return game;
+		return;
 	}
 
     public static Game ReadSaveGame() throws FileNotFoundException, IOException, ClassNotFoundException

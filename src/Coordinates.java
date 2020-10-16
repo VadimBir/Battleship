@@ -1,3 +1,4 @@
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -6,7 +7,6 @@ public class Coordinates extends Driver{
     int x;
     int y;
     int mapSize;
-    Scanner myObj = new Scanner(System.in);
     boolean[][] isAlreadyShot;
     boolean backToMenu = false;
     public Coordinates(int mapsize) 
@@ -18,6 +18,7 @@ public class Coordinates extends Driver{
         }
 	}
     public void getCoordinates(){
+    	Scanner myObj = new Scanner(System.in);
     	String tmpInput = "Null";
         do{
             do {

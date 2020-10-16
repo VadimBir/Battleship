@@ -2,19 +2,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 
-public class Play extends Menu {
-    static Game game = new Game();
-
-    public void Display() throws IOException
-    {
-
-        System.out.println("New game");
-        game.ChooseBoard();
-        game.ShipPlacement(); 
-        SaveGame(game);	
-        game.GameProcess(game);
-
-    }
+public abstract class GameSaver {
     
     public static void SaveGame(Game game) throws IOException
 	{
@@ -24,10 +12,5 @@ public class Play extends Menu {
         objectOutputStream.writeObject(game);
         objectOutputStream.close();
 
-    }
-    public static Game getGame()
-    {
-        return game;
-    }
-    
+	}
 }

@@ -1,14 +1,19 @@
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Game implements Serializable{
-	
+public class Game extends Play implements Serializable{
+	boolean gameLoaded = false;
 	BoardFactory boardFactory;
 	Board board;
 	Board boardTmp;
 	Random rand; // to make horizontal or vertical to be random for AI
-	
+	Game game;
+	GameCharacter player;
+	GameCharacter enemy;
+	Coordinates shootTo;
+	Coordinates shootToEnemy;
     
     Game()
     {
@@ -47,7 +52,7 @@ public class Game implements Serializable{
     			CarrierCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     			board=boardTmp;
 
-    			board.setBoard();
+				board.setBoardNoEnemy();
     	//-----------------------------------------------------------------
     	//battleship placement ----------------------------------------------------------------
     		
@@ -66,7 +71,7 @@ public class Game implements Serializable{
     		board=boardTmp;
     		BattleshipCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
-    		board.setBoard();
+    		board.setBoardNoEnemy();
     	//-----------------------------------------------------------------
 
 
@@ -86,7 +91,7 @@ public class Game implements Serializable{
     		board=boardTmp;
     		DestroyerCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
-    		board.setBoard();
+    		board.setBoardNoEnemy();
     	//-----------------------------------------------------------------
 
     	//Submarine placement ----------------------------------------------------------------
@@ -106,7 +111,7 @@ public class Game implements Serializable{
     		board=boardTmp;
     		SubmarineCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
-    		board.setBoard();
+    		board.setBoardNoEnemy();
     	//-----------------------------------------------------------------
 
     	//PatrolBoat placement ----------------------------------------------------------------
@@ -126,52 +131,65 @@ public class Game implements Serializable{
     		board=boardTmp;
     		PatrolBoatCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
     		board=boardTmp;
-    		board.setBoard();
+    		board.setBoardNoEnemy();
     		
     	//-----------------------------------------------------------------
     	//All ships are being placed ^^^^
     }
     
-    public void GameProcess()
+    public void GameProcess(Game game) throws IOException
     {
     	//board.setBoard();  uncomment to see enemy's board before the game starts
     	// Game process here 
 
-    		Coordinates shootTo = new Coordinates(board.boardCol.length);
-    		Coordinates shootToEnemy = new Coordinates(board.boardCol.length);
+    		
+    		
     		// length to find limit may be add input of board of player and make an algorith for AI
-    		GameCharacter player = new GameCharacter(board.boardArrPlayer, true);
     		
-    		GameCharacter enemy = new GameCharacter(board.boardArrEnemy, false);
-
     		
+    		if(!gameLoaded) {  
+    			shootTo = new Coordinates(board.boardCol.length);
+    			shootToEnemy = new Coordinates(board.boardCol.length);
+    			player = new GameCharacter(board.boardArrPlayer, true);
+    			enemy = new GameCharacter(board.boardArrEnemy, false);
+				board.boardArrPlayer = player.charBoardArr[0];
+				board.boardArrEnemy  = enemy.charBoardArr[1];  
+    		} else {
+    			this.game = game;
+    			gameLoaded = false;
+    		}
+			board.setBoard();
     		
     		
     		//loop Part 
     		while(player.getState()!=player.getWinState() && player.getState()!=player.getLostState()){
 
-    			shootTo.getCoordinates(); //getAutoCoordinates(); ;
+    			shootTo.getCoordinates(); //getAutoCoordinates();
 				if(shootTo.backToMenu){
+					shootTo.backToMenu=false;
+					Play.SaveGame(game);
 					return;
 				}
 				System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString() + " HP: " + player.shipTilesLeft);
-    			player.shootEnemy(enemy, shootTo.x, shootTo.y);
+    			player.shootEnemy(enemy, shootTo.x, shootTo.y); 
     			
     			shootToEnemy.getAutoCoordinates();
     			System.out.println("Location: " + shootTo.x + " and " + shootTo.y + " StateE: " + enemy.getState().toString() + " HP: " + enemy.shipTilesLeft);
-    			enemy.shootEnemy(player, shootTo.x, shootTo.y);
+    			enemy.shootEnemy(player, shootToEnemy.x, shootToEnemy.y);
     			board.boardArrPlayer = player.charBoardArr[0];
     			board.boardArrEnemy  = enemy.charBoardArr[1];  
     			board.setBoard();
     			
     			if (player.shipTilesLeft==1) {
     				System.out.println("Player Nearly Lost");
-    			}
+				}
+				
+    			Play.SaveGame(game);
 
     		}
     		System.out.println("After Game Loop");
     		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString());
-    		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateE: " + enemy.getState().toString());
+    		System.out.println("Location: " + shootToEnemy.x + " and " + shootToEnemy.y + "StateE: " + enemy.getState().toString());
     		
     		if(player.getState()==player.getWinState()) {
     			System.out.println("Player Has Won !!!!!!!!!!!!!");

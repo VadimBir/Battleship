@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Arrays;
 
-public class GameCharacter {
+public class GameCharacter implements Serializable{
     State iscurrentturnState;
     State iswaitingState;
     State winState;

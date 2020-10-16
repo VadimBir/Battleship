@@ -19,6 +19,15 @@ abstract public class Board implements Serializable{
 		drawT(boardArrEnemy);
 		System.out.println("--------------------------------------------------------");
 	}
+	public void setBoardNoEnemy()
+	{
+		boardClear();
+		//draw();
+		//System.out.println("--------------------------------------------------------");
+		System.out.println("\t Player: ");
+		drawT(boardArrPlayer);
+		System.out.println("--------------------------------------------------------");
+	}
 	/*
 	public void draw()
 	{  

@@ -1,4 +1,6 @@
-public class isWaitingTurnState implements State{
+import java.io.Serializable;
+
+public class isWaitingTurnState implements State, Serializable{
     
     GameCharacter character;
     int shipTilesLeft;
