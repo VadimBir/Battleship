@@ -8,6 +8,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
+import decorator_Pattern.game.Game;
+
 public class Resume extends Menu{
     
     static Scanner userScan = new Scanner(System.in);
