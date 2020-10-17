@@ -1,5 +1,7 @@
+import decorator_Pattern.*;
 import java.util.Random;
 import java.util.Scanner;
+
 
 import java.io.File;
 import java.io.FileInputStream;
