@@ -3,6 +3,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import factory_Pattern.*;
+import decorator_Pattern.*;
 
 abstract public class Ships extends Board{
 

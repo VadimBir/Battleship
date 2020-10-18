@@ -3,13 +3,14 @@ import decorator_Pattern.game.*;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 
-public class Play extends Menu {
-    static Game game = new Game();
+public class Play extends Menu implements Serializable{
+    
 
     public void Display() throws IOException
     {
-
+    	Game game = new Game();
         System.out.println("New game");
         game.ChooseBoard();
         game.ShipPlacement(); 
@@ -27,9 +28,5 @@ public class Play extends Menu {
         objectOutputStream.close();
 
     }
-    public static Game getGame()
-    {
-        return game;
-    }
-    
+
 }

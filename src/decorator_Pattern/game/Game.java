@@ -20,24 +20,29 @@ public class Game extends Play implements Serializable{
 	GameCharacter enemy;
 	Coordinates shootTo;
 	Coordinates shootToEnemy;
+	String boardChoice = "Null";
+	
     
     public Game()
     {
     	this.boardFactory = new BoardFactory();
-    	this.board = boardFactory.createBoard("10x10");
+    	ChooseBoard();
+    	this.board = boardFactory.createBoard(boardChoice);
     	this.boardTmp = board;
     	this.rand = new Random();
+    	board.setBoard();
     }
 
     public void ChooseBoard()
     {
-
-		board.setBoard();
-
-
+    	Scanner userScanner = new Scanner(System.in);
+    	while (!boardChoice.equals("10x10") && !boardChoice.equals("8x8")) {    
+	    	System.out.println("Please enter the board size (10x10 or 8x8):  ");
+	    	boardChoice = userScanner.nextLine();
+	    	System.out.println("Board: " + boardChoice);
+    	}
 		System.out.println(" ");
 
-		board.setBoard();
 		
     }
     public void ShipPlacement()

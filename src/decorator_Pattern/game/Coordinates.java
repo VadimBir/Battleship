@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import command_Pattern.*;
 
-public class Coordinates{
+public class Coordinates implements Serializable{
     int x;
     int y;
     int mapSize;
