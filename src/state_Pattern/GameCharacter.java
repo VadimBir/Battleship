@@ -12,12 +12,10 @@ public class GameCharacter implements Serializable{
     State state;
 
     public int shipTilesLeft = 17;
-//double check num !!!!!!!! -----------------------------------------
     
     public String[][][] charBoardArr;
     GameCharacter otherCharacter;
     boolean isPlayerCharacter;
-
 
     public GameCharacter(String[][] someCharBoardArr, boolean whoIsCharacter)
     {
@@ -39,15 +37,7 @@ public class GameCharacter implements Serializable{
                 this.charBoardArr[1][i][j]=" ";
             }
         }
-
         
-        //System.arraycopy(someCharBoardArr, 0, this.charBoardArr[0], 0, someCharBoardArr.length);
-        //this.charBoardArr[0] = charBoardArr;
-        //this.charBoardArr[1] = charBoardArr;
-        //for (String[] row1 : someCharBoardArr) {
-        //    Arrays.fill(row1, " ");
-        //}
-        //System.arraycopy(someCharBoardArr, 0, this.charBoardArr, 0, someCharBoardArr.length);
         if(isPlayerCharacter==true){
             state = iscurrentturnState;
         }else{
@@ -66,7 +56,7 @@ public class GameCharacter implements Serializable{
     }
     public void getStringState()
     {
-        //state.				// check last version 
+        //state.				// check last version if it was used 
 
 
     }

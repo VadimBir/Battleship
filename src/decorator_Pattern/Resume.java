@@ -17,7 +17,6 @@ public class Resume extends Menu{
 
     public void Display() throws FileNotFoundException, ClassNotFoundException, IOException
     {
-
         System.out.println("Reading Save file...");
         SaveFileCheck();
     }
@@ -29,13 +28,11 @@ public class Resume extends Menu{
 		Path directoryPath = Paths.get("");
 		curPath =directoryPath.toAbsolutePath().toString();
 		File fileCheck=new File(directoryPath+fileName+".sav");
-		
 		if(fileCheck.exists()==true) {
 			System.out.println("There is a Save File !!");
 		}else {
 			System.out.println("No save File");
 		}
-		
 		
         Game game = null;
 		if (fileCheck.exists()==true) {

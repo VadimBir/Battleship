@@ -10,9 +10,6 @@ public class BoardFactory implements Serializable{
 		}else if (string.equals("10x10")) {
 			board = new Board_10x10();
 		}
-		
-		 
 		return board;
-		
 	}
 }

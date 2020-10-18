@@ -55,7 +55,7 @@ public class Game extends Play implements Serializable{
     			CmdArrCarrier[1]= new CarrierVertical(carrier, boardTmp);
     			ControlShipPlacement CarrierCtrlArr= new ControlShipPlacement(CmdArrCarrier);
     			
-    			//  make a user input for either horizontal or vertical
+    			
     			System.out.println("Please choose the way you want to put the Carreir Ship: ");
 							
 				CarrierCtrlArr.CmdArr(ShipOrientationInput()-1);
@@ -74,8 +74,6 @@ public class Game extends Play implements Serializable{
     		CmdArrBattleship[0]= new BattleshipHorizontal(battleship, boardTmp);
     		CmdArrBattleship[1]= new BattleshipVertical(battleship, boardTmp);
     		ControlShipPlacement BattleshipCtrlArr= new ControlShipPlacement(CmdArrBattleship);
-
-			//  make a user input for either horizontal or vertical
 			System.out.println("Please choose the way you want to put the Carreir Ship: ");
 			
     		BattleshipCtrlArr.CmdArr(ShipOrientationInput()-1);
@@ -95,8 +93,7 @@ public class Game extends Play implements Serializable{
     		CmdArrDestroyer[0]= new DestroyerHorizontal(destroyer, boardTmp);
     		CmdArrDestroyer[1]= new DestroyerVertical(destroyer, boardTmp);
     		ControlShipPlacement DestroyerCtrlArr= new ControlShipPlacement(CmdArrDestroyer);
-
-			//  make a user input for either horizontal or vertical
+    		
 			System.out.println("Please choose the way you want to put the Carreir Ship: ");
 			    		DestroyerCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
@@ -115,7 +112,6 @@ public class Game extends Play implements Serializable{
     		CmdArrSubmarine[1]= new SubmarineVertical(submarine, boardTmp);
     		ControlShipPlacement SubmarineCtrlArr= new ControlShipPlacement(CmdArrSubmarine);
 
-			//  make a user input for either horizontal or vertical
 			System.out.println("Please choose the way you want to put the Carreir Ship: ");
 			
     		SubmarineCtrlArr.CmdArr(ShipOrientationInput()-1);
@@ -135,7 +131,6 @@ public class Game extends Play implements Serializable{
     		CmdArrPatrolBoat[1]= new PatrolBoatVertical(patrolBoat, boardTmp);
     		ControlShipPlacement PatrolBoatCtrlArr= new ControlShipPlacement(CmdArrPatrolBoat);
 
-			//  make a user input for either horizontal or vertical
 			System.out.println("Please choose the way you want to put the Carreir Ship: ");
 			
     		PatrolBoatCtrlArr.CmdArr(ShipOrientationInput()-1);
@@ -152,12 +147,7 @@ public class Game extends Play implements Serializable{
     {
     	//board.setBoard(); 2 uncomment to see enemy's board before the game starts
     	// Game process here 
-
-    		
-    		
-    		// length to find limit may be add input of board of player and make an algorith for AI
-    		
-    		
+		
     		if(!gameLoaded) {  
     			shootTo = new Coordinates(board.boardCol.length);
     			shootToEnemy = new Coordinates(board.boardCol.length);
@@ -170,7 +160,6 @@ public class Game extends Play implements Serializable{
     			gameLoaded = false;
     		}
 			board.setBoard();
-    		
     		
     		//loop Part 
     		while(player.getState()!=player.getWinState() && player.getState()!=player.getLostState()){

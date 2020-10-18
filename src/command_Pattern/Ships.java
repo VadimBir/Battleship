@@ -90,7 +90,7 @@ abstract public class Ships extends Board{
                     tmpInput = myObj.nextLine();
                 }
                 newY = Integer.parseInt(tmpInput);
-                tmpInput = "Null" ;                // make a hash map for [A-n]=[1-n] this would allow user to choose coodrinate via letter input for Y coordinate. 
+                tmpInput = "Null" ;                // canceled idea -> make a hash map for [A-n]=[1-n] this would allow user to choose coodrinate via letter input for Y coordinate. 
             	inputY = newY-1;
             }while(newY<=0);
         } else {

@@ -19,19 +19,11 @@ public class HowTo extends Menu{
         System.out.println("5) Choose where you would like to shoot.");
         System.out.println("\t If you missed it would show up as [x]. If it was a hit it would show up as [@].");
         System.out.println("6) Goal of the game is to hit all enemy ships.");
-        System.out.println("\nEnjoy the game.");
         
+        System.out.println("\nEnjoy the game.");
         
         System.out.println("\n \n b: Go back");
             input = userScan.nextLine();
         }
-
-
-
-
-
-
-        //Explain how to play the game here
-
     }
 }

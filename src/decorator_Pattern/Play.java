@@ -7,7 +7,6 @@ import java.io.Serializable;
 
 public class Play extends Menu implements Serializable{
     
-
     public void Display() throws IOException
     {
     	Game game = new Game();
@@ -16,17 +15,14 @@ public class Play extends Menu implements Serializable{
         game.ShipPlacement(); 
         SaveGame(game);	
         game.GameProcess(game);
-
     }
     
     public static void SaveGame(Game game) throws IOException
 	{
-		
 		ObjectOutputStream objectOutputStream = new ObjectOutputStream(
                 new FileOutputStream("game.sav"));
         objectOutputStream.writeObject(game);
         objectOutputStream.close();
-
     }
 
 }

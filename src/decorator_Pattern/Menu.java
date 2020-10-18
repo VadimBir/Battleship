@@ -6,10 +6,6 @@ public abstract class Menu {
     
     public void Display() throws FileNotFoundException, ClassNotFoundException, IOException
     {
-
         System.out.println("Main menu");
-
     }
-    
-
 }

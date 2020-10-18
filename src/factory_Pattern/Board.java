@@ -12,8 +12,6 @@ abstract public class Board implements Serializable{
 	public void setBoard() 
 	{
 		boardClear();
-		//draw();
-		//System.out.println("--------------------------------------------------------");
 		System.out.println("\t Player: ");
 		drawT(boardArrPlayer);
 		System.out.println("\t Enemy: ");
@@ -23,42 +21,12 @@ abstract public class Board implements Serializable{
 	public void setBoardNoEnemy()
 	{
 		boardClear();
-		//draw();
-		//System.out.println("--------------------------------------------------------");
 		System.out.println("\t Player: ");
 		drawT(boardArrPlayer);
 		System.out.println("--------------------------------------------------------");
 	}
-	/*
-	public void draw()
-	{  
-		System.out.print("   ");
-		for (int k=0; k<boardCol.length; k++) {
-			System.out.print("[" + boardCol[k] + "]");
-		}
-		
-		for(int i = 0; i<boardArrPlayer.length; i++) {
-			System.out.print("\n["+boardRow[i]+"]");		
-			for (int j= 0; j<boardArrPlayer[0].length; j++) {
-					System.out.print("[" + boardArrPlayer[i][j] + "]");				
-			}
-		}
-		System.out.println("\n");
-		System.out.print(" E ");
-		for (int k=0; k<boardCol.length; k++) {
-			System.out.print("[" + boardCol[k] + "]");
-		}
-		
-		for(int i = 0; i<boardArrEnemy.length; i++) {
-			System.out.print("\n["+boardRow[i]+"]");		
-			for (int j= 0; j<boardArrEnemy[0].length; j++) {
-					System.out.print("[" + boardArrEnemy[i][j] + "]");				
-			}
-		}
-		
-		System.out.println("");
-	}
-	*/
+	
+	
 	public void drawT(String[][] boardArr)
 	{  
 		System.out.print("   ");
