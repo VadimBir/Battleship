@@ -60,6 +60,8 @@ public class Driver implements Serializable{
 				Menu quit = new Quit();
 				quit.Display();
 				break;
+			default:
+				System.out.println("Sorry invalid input please choose an option 1, 2, 3 or 4");
 		}
 	}
 }

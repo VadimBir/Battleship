@@ -29,7 +29,7 @@ abstract public class Board implements Serializable{
 	
 	public void drawT(String[][] boardArr)
 	{  
-		System.out.print("   ");
+		System.out.print("    ");
 		for (int k=0; k<boardCol.length; k++) {
 			System.out.print("[" + boardCol[k] + "]");
 		}

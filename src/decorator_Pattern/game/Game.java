@@ -36,10 +36,19 @@ public class Game extends Play implements Serializable{
     public void ChooseBoard()
     {
     	Scanner userScanner = new Scanner(System.in);
-    	while (!boardChoice.equals("10x10") && !boardChoice.equals("8x8")) {    
-	    	System.out.println("Please enter the board size (10x10 or 8x8):  ");
+    	while (!boardChoice.equals("10x10") && !boardChoice.equals("8x8")) { 
+    		System.out.println("Please choosse the board size:  ");
+	    	System.out.println("1. 8 by 8 Board");
+	    	System.out.println("2. 10 by 10 Board");
 	    	boardChoice = userScanner.nextLine();
-	    	System.out.println("Board: " + boardChoice);
+	    	if (boardChoice.equals("1")) {
+	    		boardChoice = "8x8";
+	    	}else if(boardChoice.equals("2")) {
+	    		boardChoice = "10x10";
+	    	}else {
+	    		System.out.println("Sorry invalid input. Type either 1 or 2");
+	    	}
+	    	//System.out.println("Board: " + boardChoice);
     	}
 		System.out.println(" ");
 
@@ -149,8 +158,8 @@ public class Game extends Play implements Serializable{
     	// Game process here 
 		
     		if(!gameLoaded) {  
-    			shootTo = new Coordinates(board.boardCol.length);
-    			shootToEnemy = new Coordinates(board.boardCol.length);
+    			shootTo = new Coordinates(board.boardCol.length, board.boardCol);
+    			shootToEnemy = new Coordinates(board.boardCol.length, board.boardCol);
     			player = new GameCharacter(board.boardArrPlayer, true);
     			enemy = new GameCharacter(board.boardArrEnemy, false);
 				board.boardArrPlayer = player.charBoardArr[0];
@@ -160,6 +169,7 @@ public class Game extends Play implements Serializable{
     			gameLoaded = false;
     		}
 			board.setBoard();
+    		
     		
     		//loop Part 
     		while(player.getState()!=player.getWinState() && player.getState()!=player.getLostState()){
@@ -211,6 +221,8 @@ public class Game extends Play implements Serializable{
 					return 1;
 				case "2":
 					return 2;
+				default:
+					System.out.println("Sorry invalid input. Type either 1 or 2.");
 				//case "q":
 				//	return -1; // for game menu
 			}
