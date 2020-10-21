@@ -28,6 +28,7 @@ abstract public class Ships extends Board implements Serializable{
         shipChar = somShipChar;
         this.board = board;
         this.boardCol = board.boardCol;
+        this.boardRow= board.boardRow;
         someBoardArr = new String[2][board.boardCol.length][board.boardRow.length];
     }
 
@@ -37,7 +38,7 @@ abstract public class Ships extends Board implements Serializable{
         while(shipError==true){
             do{
                 getCoordinates();
-                System.out.println("Coord: " + inputX + " " + inputY);
+                //System.out.println("Coord: " + inputX + " " + inputY);
                 if(board.boardCol.length<(inputY)+shipLen || inputX>board.boardCol.length) {
                 	System.out.println("Oops seems like ship is going to be out of boundaries");                	
                 }
@@ -62,12 +63,12 @@ abstract public class Ships extends Board implements Serializable{
         while(shipError==true){
             do{
                 getCoordinates();
-                System.out.println("Coord: " + inputX + " " + inputY);
+                //System.out.println("Coord: " + inputX + " " + inputY);
                 if(board.boardCol.length<(inputX+shipLen) || inputY>board.boardCol.length) {
                 	System.out.println("Oops seems like ship is going to be out of boundaries");                	
                 }
             }while(board.boardCol.length<(inputX+shipLen) || inputY>board.boardCol.length);
-            System.out.println("Check: " + (inputX+shipLen) + "Boardlen" + board.boardCol.length + " " + board.boardRow.length);
+            //System.out.println("Check: " + (inputX+shipLen) + "Boardlen" + board.boardCol.length + " " + board.boardRow.length);
             checkVerticalCollision(someBoardArr[PlayerPlacement], inputX, inputY);
         }
         System.out.println("Place Vertically ... 5 ");    
@@ -89,10 +90,13 @@ abstract public class Ships extends Board implements Serializable{
         if(PlayerPlacement == 1){
             Scanner myObj = new Scanner(System.in);
             do{
-                while (!isNumeric(tmpInput) || tmpInput.length()!=1) {
+                while (!isNumeric(tmpInput)) { // bug if map is len 10 than input len is two
                     System.out.println("Enter starting X coordinate of where you want to place the ship: "); // canceled idea -> make a hash map for [A-n]=[1-n] this would allow user to choose coodrinate via letter input for Y coordinate.
                     tmpInput = myObj.nextLine();
-                    tmpInput = alphaToNum(tmpInput);
+                    tmpInput = alphaToNum(boardCol, tmpInput);
+                    if(!isNumeric(tmpInput)) {// bug if map is len 10 than input len is two
+                    	System.out.println("Sorry invalid input. Please type a character, for example: 'A' or 'C' ");
+                    }
                     
                 }
                 newX = Integer.parseInt(tmpInput);  
@@ -100,10 +104,11 @@ abstract public class Ships extends Board implements Serializable{
                 inputX = newX-1;
             }while(newX<=0);
             do{
-                while (!isNumeric(tmpInput) || tmpInput.length()!=1) {
+                while (!isNumeric(tmpInput)) {// bug if map is len 10 than input len is two
                     System.out.println("Enter Y coordinate of where you want to place the ship: ");
                     tmpInput = myObj.nextLine();
-                    if(!isNumeric(tmpInput) || tmpInput.length()!=1 || tmpInput.equals("0")) {
+                    tmpInput = alphaToNum(boardRow, tmpInput);
+                    if(!isNumeric(tmpInput)) {// bug if map is len 10 than input len is two
                     	System.out.println("Sorry invalid input. Please type a number, for example: '1' or '3' ");
                     }
                 }
@@ -118,20 +123,24 @@ abstract public class Ships extends Board implements Serializable{
             inputY=rand.nextInt(board.boardRow.length);
         }
     }
-    public String alphaToNum(String strInput)
+    public String alphaToNum(String[] boardAxis, String strInput)
     {
     	boolean charFound = false;
     	String xCoordinate = "";
     	int tmpInt = 0;
-    	for(int i = 0; i<boardCol.length; i++) {
-    		if(strInput.equals(boardCol[i])) {
+    	//String toCompare = "";
+    	
+    	for(int i = 0; i<boardAxis.length; i++) {
+    		
+    		if(strInput.equals(boardAxis[i].replaceAll("\s+", ""))) {
     			tmpInt=i+1; // + 1 because later it would be -1
+    			//System.out.println("Val: " + tmpInt);
     			xCoordinate=String.valueOf(tmpInt);
     			charFound = true;
     		}
     	}
     	if (!charFound) {
-    		System.out.println("Sorry invalid input. Please type a character, for example: 'A' or 'C' ");
+    		//System.out.println("Sorry invalid input. Please type a character, for example: 'A' or 'C' ");
     	}
     	charFound = false;
     	return xCoordinate; 

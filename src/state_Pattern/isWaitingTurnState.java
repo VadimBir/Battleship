@@ -29,7 +29,7 @@ public class isWaitingTurnState implements State, Serializable{
                 }
                 if(isHit == true) {
                 	character.shipTilesLeft = character.shipTilesLeft -1;
-                	System.out.println("Player? " + character.isPlayerCharacter + "HP? " + character.shipTilesLeft);
+                	//System.out.println("Player? " + character.isPlayerCharacter + "HP? " + character.shipTilesLeft);
                 	isHit = false;
                 }
                 if(character.shipTilesLeft == 0){

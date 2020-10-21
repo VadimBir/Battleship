@@ -158,8 +158,8 @@ public class Game extends Play implements Serializable{
     	// Game process here 
 		
     		if(!gameLoaded) {  
-    			shootTo = new Coordinates(board.boardCol.length, board.boardCol);
-    			shootToEnemy = new Coordinates(board.boardCol.length, board.boardCol);
+    			shootTo = new Coordinates(board.boardCol.length, board.boardCol, board.boardRow);
+    			shootToEnemy = new Coordinates(board.boardCol.length, board.boardCol, board.boardRow);
     			player = new GameCharacter(board.boardArrPlayer, true);
     			enemy = new GameCharacter(board.boardArrEnemy, false);
 				board.boardArrPlayer = player.charBoardArr[0];
@@ -180,11 +180,11 @@ public class Game extends Play implements Serializable{
 					Play.SaveGame(game);
 					return;
 				}
-				System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString() + " HP: " + player.shipTilesLeft);
+				//System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString() + " HP: " + player.shipTilesLeft);
     			player.shootEnemy(enemy, shootTo.x, shootTo.y); 
     			
     			shootToEnemy.getAutoCoordinates();
-    			System.out.println("Location: " + shootToEnemy.x + " and " + shootToEnemy.y + " StateE: " + enemy.getState().toString() + " HP: " + enemy.shipTilesLeft);
+    			//System.out.println("Location: " + shootToEnemy.x + " and " + shootToEnemy.y + " StateE: " + enemy.getState().toString() + " HP: " + enemy.shipTilesLeft);
     			enemy.shootEnemy(player, shootToEnemy.x, shootToEnemy.y);
     			board.boardArrPlayer = player.charBoardArr[0];
     			board.boardArrEnemy  = enemy.charBoardArr[1];  
@@ -197,9 +197,9 @@ public class Game extends Play implements Serializable{
     			Play.SaveGame(game);
 
     		}
-    		System.out.println("After Game Loop");
-    		System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString());
-    		System.out.println("Location: " + shootToEnemy.x + " and " + shootToEnemy.y + "StateE: " + enemy.getState().toString());
+    		//System.out.println("After Game Loop");
+    		//System.out.println("Location: " + shootTo.x + " and " + shootTo.y + "StateP: " + player.getState().toString());
+    		//System.out.println("Location: " + shootToEnemy.x + " and " + shootToEnemy.y + "StateE: " + enemy.getState().toString());
     		
     		if(player.getState()==player.getWinState()) {
     			System.out.println("Player Has Won !!!!!!!!!!!!!");
@@ -227,7 +227,7 @@ public class Game extends Play implements Serializable{
 				//	return -1; // for game menu
 			}
 		}
-		System.out.println("after orientation input");
+		//System.out.println("after orientation input");
 		return 0;
 		
 	}

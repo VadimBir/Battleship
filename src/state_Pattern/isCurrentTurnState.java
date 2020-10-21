@@ -14,7 +14,7 @@ public class isCurrentTurnState implements State, Serializable{
     public void shootEnemy(GameCharacter enemy, int x, int y)
     {
 
-        System.out.println("Shoot enemy method ...");
+        //System.out.println("Shoot enemy method ...");
 
         enemy.gotShot(x,y);
         if (enemy.shipTilesLeft ==0) {

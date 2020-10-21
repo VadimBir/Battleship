@@ -56,7 +56,7 @@ public class GameCharacter implements Serializable{
     }
     public void getStringState()
     {
-        //state.				// check last version if it was used 
+        //state.				// check last version if it was used // may be no need for this
 
 
     }

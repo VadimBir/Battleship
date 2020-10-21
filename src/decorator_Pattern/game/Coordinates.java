@@ -14,9 +14,11 @@ public class Coordinates implements Serializable{
     boolean[][] isAlreadyShot;
     boolean backToMenu = false;
     String[] boardCol;
-    public Coordinates(int mapsize, String[] boardCol) 
+    String[] boardRow;
+    public Coordinates(int mapsize, String[] boardCol, String[] boardRow) 
     {
     	this.boardCol = boardCol;
+    	this.boardRow = boardRow;
         this.mapSize = mapsize;
         isAlreadyShot = new boolean[mapsize][mapsize];
         for (boolean[] row1 : isAlreadyShot) {
@@ -32,7 +34,7 @@ public class Coordinates implements Serializable{
 	            	System.out.println("Enter X coordinate of where to shoot: (b) go to main menu");
                     tmpInput = myObj.nextLine();
                     if(!(tmpInput.equals("b"))) {
-                    	tmpInput = alphaToNum(tmpInput);                    	
+                    	tmpInput = alphaToNum(tmpInput, boardCol);                    	
                     }
                     if(!Ships.isNumeric(tmpInput) && !tmpInput.equals("b")) {
                     	System.out.println("Sorry input is not a character, please try again.");
@@ -53,10 +55,19 @@ public class Coordinates implements Serializable{
 	        	do {
 	            	System.out.println("Enter Y coordinate of where to shoot: (b) go to main menu");
 	            	tmpInput = myObj.nextLine();
-	            	if((!Ships.isNumeric(tmpInput) && !tmpInput.equals("b")) || tmpInput.length()!=1 ) {
+                    if(!(tmpInput.equals("b"))) {
+                    	tmpInput = alphaToNum(tmpInput, boardRow);                    	
+                    }
+                    if(!Ships.isNumeric(tmpInput) && !tmpInput.equals("b")) {
+                    	System.out.println("Sorry input is not a character, please try again.");
+                    }
+                }while (!Ships.isNumeric(tmpInput) && !tmpInput.equals("b"));
+	            	/*
+	            	if((!Ships.isNumeric(tmpInput) && !tmpInput.equals("b")) || tmpInput.length()!=1 ) { // bug with len = 1 coz it can be len 2 ex. 10 
                     	System.out.println("Sorry input is not a number, please try again.");
                     }
 	            }while ((!Ships.isNumeric(tmpInput) && !tmpInput.equals("b")) || tmpInput.length()!=1 );
+	            	 */
 	        	if(tmpInput.equals("b")) {
 	        		backToMenu = true;	
 	        		return;
@@ -83,19 +94,21 @@ public class Coordinates implements Serializable{
         isAlreadyShot[y][x]=true;
     }
     
-    public String alphaToNum(String strInput)
+    public String alphaToNum(String strInput, String[] boardAxis)
     {
     	//Ships toGetvarShips = new Ships;
     	
-    	String xCoordinate = "";
+    	String axisCoordinate = "";
     	int tmpInt = 0;
-    	for(int i = 0; i<boardCol.length; i++) {
-    		if(strInput.equals(boardCol[i])) {
+    	for(int i = 0; i<boardAxis.length; i++) {
+    		if(strInput.equals(boardAxis[i].replaceAll("\s+", ""))) {
     			tmpInt=i+1; // + 1 because later it would be -1
-    			xCoordinate=String.valueOf(tmpInt);
+    			axisCoordinate=String.valueOf(tmpInt);
     		}
     	}
-    	return xCoordinate; 
+    	return axisCoordinate; 
     }
+    
+    
 
 }
