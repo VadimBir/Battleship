@@ -83,7 +83,7 @@ public class Game extends Play implements Serializable{
     		CmdArrBattleship[0]= new BattleshipHorizontal(battleship, boardTmp);
     		CmdArrBattleship[1]= new BattleshipVertical(battleship, boardTmp);
     		ControlShipPlacement BattleshipCtrlArr= new ControlShipPlacement(CmdArrBattleship);
-			System.out.println("Please choose the way you want to put the Carreir Ship: ");
+			System.out.println("Please choose the way you want to put the Battleship Ship: ");
 			
     		BattleshipCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
@@ -103,7 +103,7 @@ public class Game extends Play implements Serializable{
     		CmdArrDestroyer[1]= new DestroyerVertical(destroyer, boardTmp);
     		ControlShipPlacement DestroyerCtrlArr= new ControlShipPlacement(CmdArrDestroyer);
     		
-			System.out.println("Please choose the way you want to put the Carreir Ship: ");
+			System.out.println("Please choose the way you want to put the Destroyer Ship: ");
 			    		DestroyerCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
     		DestroyerCtrlArr.CmdArr(rand.nextInt(2)); // running the command the second time would allow to do a random ship placement for an AI. 
@@ -121,7 +121,7 @@ public class Game extends Play implements Serializable{
     		CmdArrSubmarine[1]= new SubmarineVertical(submarine, boardTmp);
     		ControlShipPlacement SubmarineCtrlArr= new ControlShipPlacement(CmdArrSubmarine);
 
-			System.out.println("Please choose the way you want to put the Carreir Ship: ");
+			System.out.println("Please choose the way you want to put the Submarine Ship: ");
 			
     		SubmarineCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
@@ -140,7 +140,7 @@ public class Game extends Play implements Serializable{
     		CmdArrPatrolBoat[1]= new PatrolBoatVertical(patrolBoat, boardTmp);
     		ControlShipPlacement PatrolBoatCtrlArr= new ControlShipPlacement(CmdArrPatrolBoat);
 
-			System.out.println("Please choose the way you want to put the Carreir Ship: ");
+			System.out.println("Please choose the way you want to put the PatrolBoat Ship: ");
 			
     		PatrolBoatCtrlArr.CmdArr(ShipOrientationInput()-1);
     		board=boardTmp;
