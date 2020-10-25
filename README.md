@@ -4,7 +4,8 @@ This is a project where I make a Battleship game in Java using four design patte
 ***[Download Release](https://github.com/VadimBir/Battleship/releases/tag/v1.0)***
 
 <br />
-To run the game type in Terminal: <br />
+To run the game type in Terminal: 
+<br />
 *java -jar /.../BattleshipGame.jar* 
 
 <br />
