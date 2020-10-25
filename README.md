@@ -5,7 +5,7 @@ This is a project where I make a Battleship game in Java using four design patte
 
 <br />
 To run the game type in Terminal  
-java -jar /.../BattleshipGame.jar
+java -jar /PathToFile/BattleshipGame.jar
 
 <br />
 <br />
